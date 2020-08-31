@@ -37,4 +37,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /*Relacion de uno a muchos*/
+/*    public function subdelegaciones() {
+        return $this->hasMany('App\SubDelegacion');
+    }*/
+
+
+    /*Relacion de muchos a uno*/
+    public function subdelegacion() {
+
+        return $this->belongsTo('App\SubDelegacion', 'fk_sub_id');
+    }
 }
