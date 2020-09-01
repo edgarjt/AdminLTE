@@ -12,6 +12,6 @@ class GraphController extends Controller
     }
 
     public function graphone() {
-        return view('graph1');
+
     }
 }

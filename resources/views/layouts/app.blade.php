@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Starter</title>
+    <title>Graficas</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -16,7 +16,7 @@
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,17 +29,17 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini fixed">
+<body class="hold-transition skin-red sidebar-mini fixed">
 
 <div class="wrapper">
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="#" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+        <a href="{{route('home')}}" class="logo">
+            <div style="background: white" class="logo-lg">
+                <img src="img/logo0.png" alt="Logo" width="45%">
+            </div>
+            <span class="logo-mini"><b>CRZ</b>R</span>
         </a>
 
         <!-- Header Navbar -->
@@ -147,7 +147,7 @@
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>{{Auth::User()->name}}</p>
+                    <p>{{Auth::User()->email}}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> en linea</a>
                 </div>
@@ -170,14 +170,35 @@
                 <li class="header">Menu</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-pie-chart"></i> <span>Graficas</span>
+                    <a href="#"><i class="fa fa-cogs"></i> <span> Administrar</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('grafica_uno')}}"><i class="fa fa-circle-o"></i> Enero</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Febrero</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Estados</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Municipios</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Sub delegaciones</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Enfermedades</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Servicios</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Usuarios</a></li>
+                    </ul>
+                </li>
+
+                {{--Graficas--}}
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-cogs"></i> <span> Gráficas</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Año</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>
                     </ul>
                 </li>
             </ul>
