@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enfermedad;
 use Illuminate\Http\Request;
 
 class GraphController extends Controller
@@ -11,7 +12,8 @@ class GraphController extends Controller
         $this->middleware('auth');
     }
 
-    public function graphone() {
-
+    public function day() {
+        $enfermedades = Enfermedad::all();
+        return view('day.day', ['test' => $enfermedades->count()]);
     }
 }

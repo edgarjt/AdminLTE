@@ -188,13 +188,14 @@
 
                 {{--Graficas--}}
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-cogs"></i> <span> Gráficas</span>
+                    <a href="#"><i class="fa fa-pie-chart"></i> <span> Gráficas</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
+                        <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Semanas</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Año</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
@@ -317,6 +318,10 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+{{--ChartJS--}}
+<script src="js/Chart.min.js"></script>
+{{--Graph--}}
+<script src="js/day.js"></script>
 
 </body>
 </html>
