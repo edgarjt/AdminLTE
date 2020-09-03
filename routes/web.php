@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,15 +21,18 @@ Route::get('/', function () {
 Auth::routes();
 
 //Admin
-Route::get('/users', 'AdminController@getUsers')->name('getUsers');
-Route::get('/municipios', 'AdminController@getMunicipios')->name('getMunicipios');
-Route::get('/subdelegaciones', 'AdminController@getSubDelegaciones')->name('getSubDelegaciones');
-Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
-Route::get('/emergencias', 'AdminController@getEmergencias')->name('getEmergencias');
+Route::group(['middleware' => 'CheckRole'], function () {
+    Route::get('/users', 'AdminController@getUsers')->name('getUsers');
+    Route::get('/municipios', 'AdminController@getMunicipios')->name('getMunicipios');
+    Route::get('/subdelegaciones', 'AdminController@getSubDelegaciones')->name('getSubDelegaciones');
+    Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
+    Route::get('/emergencias', 'AdminController@getEmergencias')->name('getEmergencias');
+});
+
+//Operadores
 Route::get('/pacientes', 'AdminController@getPacientes')->name('getPacientes');
 Route::get('/fallecidos', 'AdminController@getFallecidos')->name('getFallecidos');
+
 //User
-
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/day', 'GraphController@day')->name('day');
