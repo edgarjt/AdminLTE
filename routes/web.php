@@ -19,5 +19,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Admin
+Route::get('/users', 'AdminController@getUser')->name('getUsers');
+//User
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/day', 'GraphController@day')->name('day');

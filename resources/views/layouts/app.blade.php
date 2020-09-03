@@ -149,7 +149,11 @@
                 <div class="pull-left info">
                     <p>{{Auth::User()->email}}</p>
                     <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> en linea</a>
+                    @if(Auth::User()->state == 0)
+                    <a href="#"><i class="fa fa-circle text-success"></i> En linea</a>
+                    @else
+                        <a href="#"><i class="fa fa-circle text-danger"></i> Desconectado</a>
+                    @endif
                 </div>
             </div>
 
@@ -176,13 +180,18 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Estados</a></li>
+                        @if(Auth::User()->role == 0 && Auth::User()->state == 0)
+                        <li><a href="{{route('getUsers')}}"><i class="fa fa-circle-o"></i>Usuarios</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Municipios</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Sub delegaciones</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Enfermedades</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Servicios</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Usuarios</a></li>
+                        @endif
+
+                        @if(Auth::User()->state == 0)
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Pacientes</a></li>
+                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
+                        @endif
                     </ul>
                 </li>
 
@@ -194,12 +203,14 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
+                        @if(Auth::User()->state == 0)
                         <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Semanas</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Año</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>
+                        @endif
                     </ul>
                 </li>
             </ul>

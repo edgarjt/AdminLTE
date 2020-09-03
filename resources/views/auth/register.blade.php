@@ -6,6 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     @include('includes.message')
+                    <div class="card-header">Registro</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
@@ -39,26 +40,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electronico') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Sub delegación</label>
-
-                                <div class="col-md-6">
-                                    <input id="fk_sub_id" type="text" class="form-control @error('fk_sub_id') is-invalid @enderror" name="fk_sub_id" value="{{ old('fk_sub_id') }}" required autocomplete="fk_sub_id">
-
-                                    @error('fk_sub_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
