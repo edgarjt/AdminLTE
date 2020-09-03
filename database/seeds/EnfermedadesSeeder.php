@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class EnfermedadSeeder extends Seeder
+class EnfermedadesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,19 +12,19 @@ class EnfermedadSeeder extends Seeder
      */
     public function run()
     {
-        $enfermedad = array(
-            ['enf_nombre' => 'Varicela'],
+        $data = array(
             ['enf_nombre' => 'Fiebre'],
-            ['enf_nombre' => 'Tos'],
-
+            ['enf_nombre' => 'Diabetes'],
+            ['enf_nombre' => 'COVID-19']
         );
 
         $table = DB::table('enfermedades');
-
+        //No verfica las llaves foraneas
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        //Vacia los registros
         $table->truncate();
 
-        foreach ($enfermedad as $item) {
+        foreach ($data as $item) {
             $table->insert($item);
         }
     }

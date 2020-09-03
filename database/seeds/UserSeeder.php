@@ -14,18 +14,19 @@ class UserSeeder extends Seeder
     {
         //Create users root
         $users = array(
-            ['name' => 'root', 'surname' => 'root', 'email' => 'root@email.com', 'password' => Hash::make('root'), 'fk_sub_id' => 1],
-            ['name' => 'Edgar', 'surname' => 'jiemenez torres', 'email' => 'edgar@email.com', 'password' => Hash::make('edgar'), 'fk_sub_id' => 1],
-            ['name' => 'Estefany', 'surname' => 'Serino Gonzales', 'email' => 'estefany@email.com', 'password' => Hash::make('estefany'), 'fk_sub_id' => 2]
+            ['name' => 'root', 'surname' => 'root', 'email' => 'root@email.com', 'password' => Hash::make('root'), 'state' => 0, 'role' =>0],
+            ['name' => 'Edgar', 'surname' => 'jiemenez torres', 'email' => 'edgar@email.com', 'password' => Hash::make('edgar'), 'state' => 1, 'role' =>1],
+            ['name' => 'Estefany', 'surname' => 'Serino Gonzales', 'email' => 'estefany@email.com', 'password' => Hash::make('estefany'), 'state' => 0, 'role' =>1]
         );
 
+        $table = DB::table('users');
         //No verfica las llaves foraneas
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         //Vacia los registros
-        DB::table('users')->truncate();
+        $table->truncate();
 
         foreach ($users as $item) {
-            DB::table('users')->insert($item);
+            $table->insert($item);
         }
     }
 }
