@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class municipiosSeeder extends Seeder
+class MunicipiosSeeder extends Seeder
 {
     /**
      * Run the database seeds.
