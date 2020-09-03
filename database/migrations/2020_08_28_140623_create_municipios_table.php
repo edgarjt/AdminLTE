@@ -18,8 +18,6 @@ class CreateMunicipiosTable extends Migration
             $table->string('mun_clave');
             $table->string('mun_nombre');
             $table->string('mun_siglas');
-            $table->unsignedBigInteger('fk_est_id');
-            $table->foreign('fk_est_id')->references('est_id')->on('estados');
             $table->timestamps();
         });
     }

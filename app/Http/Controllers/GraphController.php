@@ -14,6 +14,6 @@ class GraphController extends Controller
 
     public function day() {
         $enfermedades = Enfermedad::all();
-        return view('day.day', ['test' => $enfermedades->count()]);
+        return view('day.day', ['test' => $enfermedades]);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubdelegacionTable extends Migration
+class CreateSubdelegacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,7 +19,8 @@ class CreateSubdelegacionTable extends Migration
             $table->string('sub_descripcion');
             $table->string('sub_calle');
             $table->unsignedBigInteger('fk_mun_id');
-            $table->foreign('fk_mun_id')->references('mun_id')->on('municipios');
+            $table->foreign('fk_mun_id')->references('mun_id')->on('municipios')
+            ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateSubdelegacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subdelegacion');
+        Schema::dropIfExists('subdelegaciones');
     }
 }

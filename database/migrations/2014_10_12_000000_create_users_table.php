@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('fk_sub_id')->nullable();
-            $table->foreign('fk_sub_id')->references('sub_id')->on('subdelegaciones');
+            $table->integer('estate');
+            $table->integer('role');
             $table->rememberToken();
             $table->timestamps();
         });
