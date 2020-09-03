@@ -20,7 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 
 //Admin
-Route::get('/users', 'AdminController@getUser')->name('getUsers');
+Route::get('/users', 'AdminController@getUsers')->name('getUsers');
+Route::get('/municipios', 'AdminController@getMunicipios')->name('getMunicipios');
+Route::get('/subdelegaciones', 'AdminController@getSubDelegaciones')->name('getSubDelegaciones');
+Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
+Route::get('/emergencias', 'AdminController@getEmergencias')->name('getEmergencias');
+Route::get('/pacientes', 'AdminController@getPacientes')->name('getPacientes');
+Route::get('/fallecidos', 'AdminController@getFallecidos')->name('getFallecidos');
 //User
 
 

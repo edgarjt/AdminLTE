@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CheckRole
+class State
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::User()->role == 0 && Auth::User()->state == 0) {
+        if (Auth::check() && Auth::User()->state == 0){
             return $next($request);
         }
 

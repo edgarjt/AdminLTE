@@ -9,7 +9,7 @@ class GraphController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('State');
     }
 
     public function day() {

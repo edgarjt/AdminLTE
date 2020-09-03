@@ -17,6 +17,7 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -173,7 +174,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Menu</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#"><i class="fa fa-cogs"></i> <span> Administrar</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -182,15 +183,15 @@
                     <ul class="treeview-menu">
                         @if(Auth::User()->role == 0 && Auth::User()->state == 0)
                         <li><a href="{{route('getUsers')}}"><i class="fa fa-circle-o"></i>Usuarios</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Municipios</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Sub delegaciones</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Enfermedades</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>
+                        <li><a href="{{route('getMunicipios')}}"><i class="fa fa-circle-o"></i>Municipios</a></li>
+                        <li><a href="{{route('getSubDelegaciones')}}"><i class="fa fa-circle-o"></i>Sub delegaciones</a></li>
+                        <li><a href="{{route('getEnfermedades')}}"><i class="fa fa-circle-o"></i>Enfermedades</a></li>
+                        <li><a href="{{route('getEmergencias')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>
                         @endif
 
                         @if(Auth::User()->state == 0)
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Pacientes</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
+                        <li><a href="{{route('getPacientes')}}"><i class="fa fa-circle-o"></i>Pacientes</a></li>
+                        <li><a href="{{route('getFallecidos')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
                         @endif
                     </ul>
                 </li>
@@ -223,7 +224,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        <section class="content container-fluid">
+        <section class="content">
             <main>
                 @yield('content')
             </main>
