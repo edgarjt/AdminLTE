@@ -16,7 +16,7 @@
                     <td>{{$subDelegacion->sub_nombre}}</td>
                     <td>{{$subDelegacion->sub_descripcion}}</td>
                     <td>{{$subDelegacion->sub_calle}}</td>
-                    <td>{{$subDelegacion->fk_mun_id}}</td>
+                    <td>{{$subDelegacion->municipio->mun_nombre}}</td>
                 </tr>
             @endforeach
             </tbody>

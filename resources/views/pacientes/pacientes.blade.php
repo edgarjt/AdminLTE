@@ -7,6 +7,7 @@
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Nacimiento</th>
+                <th>Municipio</th>
                 <th>Sub delegación</th>
                 <th>Enfermedad</th>
                 <th>Emergencia</th>
@@ -18,9 +19,10 @@
                     <td>{{$paciente->pac_nombre}}</td>
                     <td>{{$paciente->pac_apellidos}}</td>
                     <td>{{$paciente->pac_nacimiento}}</td>
-                    <td>{{$paciente->fk_sub_id}}</td>
-                    <td>{{$paciente->fk_enf_id}}</td>
-                    <td>{{$paciente->fk_eme_id}}</td>
+                    <td>{{$paciente->subdelegacion->municipio->mun_nombre}}</td>
+                    <td>{{$paciente->subdelegacion->sub_nombre}}</td>
+                    <td>{{$paciente->enfermedad->enf_nombre}}</td>
+                    <td>{{$paciente->emergencia->eme_tipo}}</td>
                 </tr>
             @endforeach
             </tbody>

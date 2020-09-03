@@ -45,8 +45,8 @@ class User extends Authenticatable
 
 
     /*Relacion de muchos a uno*/
-    public function subdelegacion() {
+/*    public function subdelegacion() {
 
         return $this->belongsTo('App\SubDelegacion', 'fk_sub_id');
-    }
+    }*/
 }
