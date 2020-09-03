@@ -27,9 +27,9 @@
                     </td>
                     <td>
                         @if($user->role == 0)
-                            Super administrador
-                        @else
                             Administrador
+                        @else
+                            Radio operador
                         @endif
                     </td>
                 </tr>

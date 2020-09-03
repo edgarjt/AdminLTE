@@ -173,6 +173,12 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Menu</li>
+                <li>
+                    <a href="{{route('home')}}"><i class="fa fa-home"></i> <span> Inicio</span></a>
+                </li>
+
+
+
                 <!-- Optionally, you can add icons to the links -->
                 <li class="treeview active">
                     <a href="#"><i class="fa fa-cogs"></i> <span> Administrar</span>
