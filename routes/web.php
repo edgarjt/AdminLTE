@@ -30,8 +30,11 @@ Route::group(['middleware' => 'CheckRole'], function () {
 });
 
 //Operadores
-Route::get('/pacientes', 'AdminController@getPacientes')->name('getPacientes');
-Route::get('/fallecidos', 'AdminController@getFallecidos')->name('getFallecidos');
+Route::group(['middleware' => 'State'], function () {
+    Route::get('/pacientes', 'AdminController@getPacientes')->name('getPacientes');
+    Route::get('/fallecidos', 'AdminController@getFallecidos')->name('getFallecidos');
+});
+
 
 //User
 Route::get('/home', 'HomeController@index')->name('home');
