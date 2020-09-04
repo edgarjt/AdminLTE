@@ -10,5 +10,5 @@ class Emergencia extends Model
 
     protected $primaryKey = 'eme_id';
 
-    protected $fillable = ['eme_tipo'];
+    protected $fillable = ['eme_tipo', 'created_at'];
 }
