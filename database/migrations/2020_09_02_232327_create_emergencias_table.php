@@ -16,7 +16,7 @@ class CreateEmergenciasTable extends Migration
         Schema::create('emergencias', function (Blueprint $table) {
             $table->id('eme_id');
             $table->string('eme_tipo');
-            $table->timestamps();
+            $table->date('created_at')->nullable();
         });
     }
 

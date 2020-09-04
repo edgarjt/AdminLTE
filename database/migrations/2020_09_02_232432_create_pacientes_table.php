@@ -30,7 +30,8 @@ class CreatePacientesTable extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('fk_use_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
+            //$table->timestamps();
+            $table->date('created_at')->nullable();
         });
     }
 

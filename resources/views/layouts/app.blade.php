@@ -339,7 +339,7 @@
 {{--ChartJS--}}
 <script src="js/Chart.min.js"></script>
 {{--Graph--}}
-<script src="js/day.js"></script>
+<script src="{{asset('js/graficas.js')}}"></script>
 
 </body>
 </html>

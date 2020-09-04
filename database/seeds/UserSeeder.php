@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         $users = array(
             ['name' => 'root', 'surname' => 'root', 'email' => 'root@email.com', 'password' => Hash::make('root'), 'state' => 0, 'role' =>0],
             ['name' => 'Edgar', 'surname' => 'jiemenez torres', 'email' => 'edgar@email.com', 'password' => Hash::make('edgar'), 'state' => 1, 'role' =>1],
-            ['name' => 'Estefany', 'surname' => 'Serino Gonzales', 'email' => 'estefany@email.com', 'password' => Hash::make('estefany'), 'state' => 0, 'role' =>1]
+            ['name' => 'Antonio', 'surname' => 'Silvan', 'email' => 'antonio@email.com', 'password' => Hash::make('antonio'), 'state' => 1, 'role' =>1],
         );
 
         $table = DB::table('users');

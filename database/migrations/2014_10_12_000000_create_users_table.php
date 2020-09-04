@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('state');
             $table->integer('role');
             $table->rememberToken();
-            $table->timestamps();
+            $table->date('created_at')->nullable();
         });
     }
 

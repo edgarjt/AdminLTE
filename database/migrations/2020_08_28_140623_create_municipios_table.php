@@ -18,7 +18,7 @@ class CreateMunicipiosTable extends Migration
             $table->string('mun_clave');
             $table->string('mun_nombre');
             $table->string('mun_siglas');
-            $table->timestamps();
+            $table->date('created_at')->nullable();
         });
     }
 

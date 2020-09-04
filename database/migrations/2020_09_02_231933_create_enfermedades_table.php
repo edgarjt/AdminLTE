@@ -16,7 +16,7 @@ class CreateEnfermedadesTable extends Migration
         Schema::create('enfermedades', function (Blueprint $table) {
             $table->id('enf_id');
             $table->string('enf_nombre');
-            $table->timestamps();
+            $table->date('created_at')->nullable();
         });
     }
 

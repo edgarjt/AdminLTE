@@ -18,7 +18,7 @@ class CreateFallecidosTable extends Migration
             $table->unsignedBigInteger('fk_pac_id');
             $table->foreign('fk_pac_id')->references('pac_id')->on('pacientes')
                 ->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
+            $table->date('created_at')->nullable();
         });
     }
 
