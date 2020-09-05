@@ -213,7 +213,7 @@
                         @if(Auth::User()->state == 0)
                         <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Semanas</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
+                        <li id="testss"><a href="{{route('month')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Año</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>

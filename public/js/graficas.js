@@ -1,31 +1,50 @@
 var linkData = 'http://graficas.net/';
-$(document).ready(function () {
+
+$('#graphDay').click(function () {
+    alert('okok');
+})
+
+$('#graphMonth').click(function () {
+    var fecha_one = $('#select-month').val();
+
+    $('.load').removeClass('d-none')
     $.ajax({
         contentType:'aplication/json',
         dataType: 'json',
         type: 'GET',
-        url:linkData+'registerDay',
+        url:linkData+'registerDay/' + fecha_one,
         success: function (result){
-            console.log(result);
-/*            $.each(result, function (i, item){
-               cons
-            });*/
+            var label = [];
+            var data = [];
+            var labelInfo = '# Pacientes';
+            $.each(result, function (i, item){
+               label.push(item['Mes']);
+               data.push(item['Total']);
+            });
 
+            if (label) {
+                $('.load').addClass('d-none');
+            }
+
+            $('#test').html('<canvas id="graph" style="height:450px"></canvas>')
+            graphBar(label, data, labelInfo);
         }
     })
 })
 
-function test(data) {
-    var ctx = document.getElementById('barDay');
-    var menu = data;
-    var test = [4, 19, 3, 5];
+function graphBar(label, data, labelInfo) {
+    var ctx = document.getElementById('graph');
+
+    if (ctx == false) {
+        console.log('No existe el id')
+    }
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: menu,
+            labels: label,
             datasets: [{
-                label: '# of Votes',
-                data: test,
+                label: labelInfo,
+                data: data,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',

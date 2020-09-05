@@ -13,8 +13,11 @@ class FallecidosSeeder extends Seeder
     public function run()
     {
         $data = array(
-            ['fk_pac_id' => 2],
-            ['fk_pac_id' => 1],
+            ['fk_pac_id' => 2, 'created_at' => '2020-09-04'],
+            ['fk_pac_id' => 1, 'created_at' => '2020-07-01'],
+            ['fk_pac_id' => 3, 'created_at' => '2020-07-025'],
+            ['fk_pac_id' => 4, 'created_at' => '2020-01-012'],
+            ['fk_pac_id' => 5, 'created_at' => '2020-06-04']
         );
 
         $table = DB::table('fallecidos');
