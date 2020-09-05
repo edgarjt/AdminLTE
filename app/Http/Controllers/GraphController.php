@@ -39,7 +39,7 @@ class GraphController extends Controller
 
     public function registerDay($sub_id, $date_1, $date_2) {
         $day = Paciente::select(
-            DB::raw("DATE_FORMAT(created_at,'%D') AS Dias"),
+            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') AS Dias"),
             DB::raw("COUNT(*) AS Total")
         )
             ->groupBy('Dias')
