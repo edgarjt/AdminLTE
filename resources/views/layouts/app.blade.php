@@ -180,7 +180,7 @@
 
 
                 <!-- Optionally, you can add icons to the links -->
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#"><i class="fa fa-cogs"></i> <span> Administrar</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -203,7 +203,7 @@
                 </li>
 
                 {{--Graficas--}}
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#"><i class="fa fa-pie-chart"></i> <span> Gráficas</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -212,8 +212,7 @@
                     <ul class="treeview-menu">
                         @if(Auth::User()->state == 0)
                         <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
-                        <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Semanas</a></li>
-                        <li id="testss"><a href="{{route('month')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
+                        <li><a href="{{route('month')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Año</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
                         <li><a href="{{route('register')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>

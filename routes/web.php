@@ -41,4 +41,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/day', 'GraphController@day')->name('day');
 Route::get('/month', 'GraphController@month')->name('month');
 /*Controller query*/
-Route::get('/registerDay/{id}', 'GraphController@registerDay');
+Route::get('/registerDay/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDay');
+Route::get('/registerMonth/{sub_id}', 'GraphController@registerMonth');

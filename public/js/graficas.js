@@ -1,22 +1,52 @@
 var linkData = 'http://graficas.net/';
 
 $('#graphDay').click(function () {
-    alert('okok');
-})
+    var subdelegacion = $('#select-day').val();
+    var fecha_1 = $('#fecha_1').val();
+    var fecha_2 = $('#fecha_2').val();
 
-$('#graphMonth').click(function () {
-    var fecha_one = $('#select-month').val();
+    if (fecha_1 == false || fecha_2 == false) {
+        return false;
+    }
 
     $('.load').removeClass('d-none')
     $.ajax({
         contentType:'aplication/json',
         dataType: 'json',
         type: 'GET',
-        url:linkData+'registerDay/' + fecha_one,
+        url:linkData+'registerDay/'+subdelegacion+'/'+fecha_1+'/'+fecha_2,
         success: function (result){
             var label = [];
             var data = [];
-            var labelInfo = '# Pacientes';
+            var labelInfo = '# Emregencias';
+            $.each(result, function (i, item){
+                label.push(item['Dias']);
+                data.push(item['Total']);
+            });
+
+            if (label) {
+                $('.load').addClass('d-none');
+            }
+
+            $('#test').html('<canvas id="graph" style="height:450px"></canvas>')
+            graphBar(label, data, labelInfo);
+        }
+    })
+})
+
+$('#graphMonth').click(function () {
+    var subdelegacion = $('#select-month').val();
+
+    $('.load').removeClass('d-none')
+    $.ajax({
+        contentType:'aplication/json',
+        dataType: 'json',
+        type: 'GET',
+        url:linkData+'registerMonth/'+subdelegacion,
+        success: function (result){
+            var label = [];
+            var data = [];
+            var labelInfo = '# Emergencias';
             $.each(result, function (i, item){
                label.push(item['Mes']);
                data.push(item['Total']);

@@ -19,14 +19,6 @@ class GraphController extends Controller
     public function day() {
         $subDelegaciones = SubDelegacion::all();
         return view('day.day', ['subdelegaciones' => $subDelegaciones]);
-/*        $test = Paciente::whereBetween('created_at', ['2020-06-01 10:05:55', '2020-08-18 10:05:55'])->get();
-        return view('day.day', ['test' => $test]);*/
-/*        foreach ($test as $item) {
-            $fecha = $item->created_at;
-            $date = Carbon::parse($fecha);
-            echo $date->isoFormat('MMMM') . '<br/>';
-
-        }*/
     }
 
     public function month() {
@@ -34,13 +26,31 @@ class GraphController extends Controller
         return view('month.month', ['subdelegaciones' => $subDelegacion]);
     }
 
-    public function registerDay($id) {
+    public function registerDay($sub_id, $date_1, $date_2) {
+        $day = Paciente::select(
+            DB::raw("created_at AS Dias"),
+            DB::raw("COUNT(*) AS Total")
+        )
+            ->groupBy('Dias')
+/*            ->where([
+                ['fk_sub_id', '=', $sub_id],
+                ['created_at', '=', '2020-11-25']
+        ])*/
+            ->where('fk_sub_id', $sub_id)
+            ->whereBetween('created_at', [$date_1, $date_2])
+            ->get();
+        ;
+        return $day;
+
+    }
+
+    public function registerMonth($sub_id) {
         $month = Paciente::select(
             DB::raw("DATE_FORMAT(created_at,'%M %Y') as Mes"),
             DB::raw('COUNT(*) AS Total')
         )
             ->groupBy('Mes')
-            ->where('fk_sub_id', $id)
+            ->where('fk_sub_id', $sub_id)
             ->get();
         return $month;
     }
