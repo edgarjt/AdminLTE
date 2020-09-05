@@ -1,4 +1,4 @@
-var linkData = 'http://graficas.net/';
+var linkData = 'https://solucionesalejo.com/cruzroja/public/';
 
 $('#graphDay').click(function () {
     var subdelegacion = $('#select-day').val();
