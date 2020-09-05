@@ -14,7 +14,7 @@ class PacientesSeeder extends Seeder
     {
         $data = array(
             ['pac_nombre' => 'Miguel', 'pac_apellidos'      => 'Zacarias Escobar', 'pac_nacimiento'     => '03/05/2000', 'fk_sub_id' => 1, 'fk_enf_id' => 2,'fk_eme_id' => 3, 'fk_use_id' => 3, 'created_at' => '2020-10-04'],
-            ['pac_nombre' => 'Perla', 'pac_apellidos'       => 'Narvaez Gutierrez', 'pac_nacimiento'    => '25/01/1985', 'fk_sub_id' => 3, 'fk_enf_id' => 1,'fk_eme_id' => 2, 'fk_use_id' => 1, 'created_at' => '2020-09-08'],
+            ['pac_nombre' => 'Perla', 'pac_apellidos'       => 'Narvaez Gutierrez', 'pac_nacimiento'    => '25/01/1985', 'fk_sub_id' => 3, 'fk_enf_id' => 1,'fk_eme_id' => 2, 'fk_use_id' => 1, 'created_at' => '2019-09-08'],
             ['pac_nombre' => 'Dionisio', 'pac_apellidos'    => 'Perez Martinez', 'pac_nacimiento'       => '10/11/1999', 'fk_sub_id' => 2, 'fk_enf_id' => 3,'fk_eme_id' => 1, 'fk_use_id' => 3, 'created_at' => '2020-12-03'],
             ['pac_nombre' => 'Juan', 'pac_apellidos'        => 'Ocaña Zepeda', 'pac_nacimiento'         => '12/09/1996', 'fk_sub_id' => 5, 'fk_enf_id' => 2,'fk_eme_id' => 2, 'fk_use_id' => 4, 'created_at' => '2020-01-02'],
             ['pac_nombre' => 'Omar', 'pac_apellidos'        => 'Qué Lázaro', 'pac_nacimiento'           => '14/02/1996', 'fk_sub_id' => 7, 'fk_enf_id' => 1,'fk_eme_id' => 2, 'fk_use_id' => 3, 'created_at' => '2020-08-04'],

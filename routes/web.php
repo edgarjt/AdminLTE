@@ -40,6 +40,9 @@ Route::group(['middleware' => 'State'], function () {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/day', 'GraphController@day')->name('day');
 Route::get('/month', 'GraphController@month')->name('month');
+Route::get('/year', 'GraphController@year')->name('year');
+Route::get('/deceased', 'GraphController@deceased')->name('deceased');
 /*Controller query*/
 Route::get('/registerDay/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDay');
 Route::get('/registerMonth/{sub_id}', 'GraphController@registerMonth');
+Route::get('/registerYear/{sub_id}', 'GraphController@registerYear');

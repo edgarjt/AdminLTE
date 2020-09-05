@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enfermedad;
+use App\Fallecido;
 use App\Paciente;
 use App\SubDelegacion;
 use Illuminate\Http\Request;
@@ -26,9 +27,19 @@ class GraphController extends Controller
         return view('month.month', ['subdelegaciones' => $subDelegacion]);
     }
 
+    public function year() {
+        $subDelegacion = SubDelegacion::all();
+        return view('year.year', ['subdelegaciones' => $subDelegacion]);
+    }
+
+    public function deceased() {
+        $subDelegacion = SubDelegacion::all();
+        return view('deceased.deceased', ['subdelegaciones' => $subDelegacion]);
+    }
+
     public function registerDay($sub_id, $date_1, $date_2) {
         $day = Paciente::select(
-            DB::raw("created_at AS Dias"),
+            DB::raw("DATE_FORMAT(created_at,'%D') AS Dias"),
             DB::raw("COUNT(*) AS Total")
         )
             ->groupBy('Dias')
@@ -46,12 +57,24 @@ class GraphController extends Controller
 
     public function registerMonth($sub_id) {
         $month = Paciente::select(
-            DB::raw("DATE_FORMAT(created_at,'%M %Y') as Mes"),
+            DB::raw("DATE_FORMAT(created_at,'%M %Y') as Meses"),
             DB::raw('COUNT(*) AS Total')
         )
-            ->groupBy('Mes')
+            ->groupBy('Meses')
             ->where('fk_sub_id', $sub_id)
             ->get();
+
         return $month;
+    }
+
+    public function registerYear($sub_id) {
+        $year = Paciente::select(
+            DB::raw("DATE_FORMAT(created_at,'%Y') as Year"),
+            DB::raw('COUNT(*) AS Total')
+        )
+            ->groupBy('Year')
+            ->where('fk_sub_id', $sub_id)
+            ->get();
+        return $year;
     }
 }

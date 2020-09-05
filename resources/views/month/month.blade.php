@@ -29,7 +29,7 @@
                     <div class="box-body">
                         <div class="chart">
                             <div class="form-group form-group-sm">
-                                <div class="col-md-5">
+                                <div class="form-inline">
                                     <select class="form-control" id="select-month">
                                         @foreach($subdelegaciones as $subdelegacion)
                                             <option value="{{$subdelegacion->sub_id}}">
@@ -37,14 +37,22 @@
                                             </option>
                                         @endforeach
                                     </select>
+
+                                    <select class="form-control" id="type-graph">
+                                        <option value="bar">Barra</option>
+                                        <option value="doughnut">Pastel</option>
+                                        <option value="polarArea">Area polar</option>
+                                    </select>
+
+                                    <button class="btn btn-default btn-sm" id="graphMonth">Generar</button>
                                 </div>
-                                <button class="btn btn-default btn-sm" id="graphMonth">Generar</button>
+
                             </div>
 
                             <div style="text-align: center" class="d-none load">
                                 <img src="{{asset('img/load.gif')}}" alt="Load" width="30">
                             </div>
-                            <div id="test"></div>
+                            <div id="registros-emergencias"></div>
 
                         </div>
                     </div>
