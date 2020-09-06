@@ -48,7 +48,7 @@ class AdminController extends Controller
     }
 
     public function getFallecidos() {
-        $fallecidos = Fallecido::all();
+        $fallecidos = Paciente::all();
         return view('fallecidos.fallecidos', ['fallecidos' => $fallecidos]);
     }
 }

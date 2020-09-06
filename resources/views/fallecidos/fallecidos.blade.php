@@ -15,15 +15,18 @@
             </thead>
             <tbody>
             @foreach($fallecidos as $fallecido)
-                <tr>
-                    <td>{{$fallecido->paciente->pac_nombre}}</td>
-                    <td>{{$fallecido->paciente->pac_apellidos}}</td>
-                    <td>{{$fallecido->paciente->pac_nacimiento}}</td>
-                    <td>{{$fallecido->paciente->subdelegacion->municipio->mun_nombre}}</td>
-                    <td>{{$fallecido->paciente->subdelegacion->sub_nombre}}</td>
-                    <td>{{$fallecido->paciente->enfermedad->enf_nombre}}</td>
-                    <td>{{$fallecido->paciente->emergencia->eme_tipo}}</td>
-                </tr>
+                @if($fallecido->pac_estado == 1)
+                    <tr>
+                        <td>{{$fallecido->pac_nombre}}</td>
+                        <td>{{$fallecido->pac_apellidos}}</td>
+                        <td>{{$fallecido->pac_nacimiento}}</td>
+                        <td>{{$fallecido->subdelegacion->municipio->mun_nombre}}</td>
+                        <td>{{$fallecido->subdelegacion->sub_nombre}}</td>
+                        <td>{{$fallecido->enfermedad->enf_nombre}}</td>
+                        <td>{{$fallecido->emergencia->eme_tipo}}</td>
+                        <td></td>
+                    </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

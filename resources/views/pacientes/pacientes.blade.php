@@ -15,6 +15,7 @@
             </thead>
             <tbody>
             @foreach($pacientes as $paciente)
+                @if($paciente->pac_estado == 0)
                 <tr>
                     <td>{{$paciente->pac_nombre}}</td>
                     <td>{{$paciente->pac_apellidos}}</td>
@@ -24,6 +25,7 @@
                     <td>{{$paciente->enfermedad->enf_nombre}}</td>
                     <td>{{$paciente->emergencia->eme_tipo}}</td>
                 </tr>
+                @endif
             @endforeach
             </tbody>
         </table>
