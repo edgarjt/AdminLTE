@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
     <link rel="stylesheet" href="css/style.css">
 
+    {{--Data table--}}
+    <link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -180,7 +183,7 @@
 
 
                 <!-- Optionally, you can add icons to the links -->
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#"><i class="fa fa-cogs"></i> <span> Administrar</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -330,6 +333,10 @@
 
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+{{--Data table--}}
+<script type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
@@ -338,6 +345,29 @@
 <script src="js/Chart.min.js"></script>
 {{--Graph--}}
 <script src="{{asset('js/graficas.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            //para cambiar el lenguaje a español
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "sProcessing":"Procesando...",
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

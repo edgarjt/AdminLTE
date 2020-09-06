@@ -3,7 +3,7 @@ var linkData = 'http://graficas.net/';
 $('#graphAll').click(function () {
     var year = $('#year').val();
 
-    if (year == false || year.length < 4) {
+    if (year.length < 4 || year.length > 4 || isNaN(year)) {
         return false;
     }
     $('.load').removeClass('d-none');
@@ -65,7 +65,7 @@ $('#graphDay').click(function () {
     var fecha_1 = $('#fecha_1').val();
     var fecha_2 = $('#fecha_2').val();
 
-    if (fecha_1 == false || fecha_2 == false) {
+    if (fecha_1.length === 0 || fecha_2.length === 0) {
         return false;
     }
 
@@ -100,7 +100,7 @@ $('#graphDayDeced').click(function () {
     var fecha_1 = $('#fecha1').val();
     var fecha_2 = $('#fecha2').val();
 
-    if (fecha_1 == false || fecha_2 == false) {
+    if (fecha_1.length === 0 || fecha_2.length === 0) {
         return false;
     }
 
