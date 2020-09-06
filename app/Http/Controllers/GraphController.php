@@ -32,36 +32,103 @@ class GraphController extends Controller
         return view('year.year', ['subdelegaciones' => $subDelegacion]);
     }
 
-    public function deceased() {
+    public function all() {
         $subDelegacion = SubDelegacion::all();
-        return view('deceased.deceased', ['subdelegaciones' => $subDelegacion]);
+        return view('all.all', ['subdelegaciones' => $subDelegacion]);
     }
 
-    public function registerDay($sub_id, $date_1, $date_2) {
+    public function registerAll($data) {
+
+        $register = Paciente::select(
+            DB::raw("DATE_FORMAT(created_at,'%m %Y') AS Mes"),
+            DB::raw("COUNT(*) AS Total")
+        )
+            ->groupBy('Mes')
+            ->orderBy('Mes', 'ASC')
+            ->where([
+                ['created_at', 'like', $data.'%'],
+                ['pac_estado', '=', 0]
+            ])
+            ->get();
+        return $register;
+    }
+
+    public function registerAllDead($data) {
+
+        $register = Paciente::select(
+            DB::raw("DATE_FORMAT(created_at,'%m %Y') AS Mes"),
+            DB::raw("COUNT(*) AS Total")
+        )
+            ->groupBy('Mes')
+            ->orderBy('Mes', 'ASC')
+            ->where([
+                ['created_at', 'like', $data.'%'],
+                ['pac_estado', '=', 1]
+            ])
+            ->get();
+        return $register;
+    }
+
+    public function registerDay($sub_id, $date_1, $date_2)
+    {
         $day = Paciente::select(
             DB::raw("DATE_FORMAT(created_at,'%D %M %Y') AS Dias"),
             DB::raw("COUNT(*) AS Total")
         )
             ->groupBy('Dias')
-/*            ->where([
+            ->where([
                 ['fk_sub_id', '=', $sub_id],
-                ['created_at', '=', '2020-11-25']
-        ])*/
-            ->where('fk_sub_id', $sub_id)
+                ['pac_estado', '=', 0]
+            ])
             ->whereBetween('created_at', [$date_1, $date_2])
-            ->get();
-        ;
+            ->get();;
         return $day;
 
     }
 
+    public function registerDayDeced($sub_id, $date_1, $date_2) {
+        $day = Paciente::select(
+            DB::raw("DATE_FORMAT(created_at,'%D %M %Y') AS Dias"),
+            DB::raw("COUNT(*) AS Total")
+        )
+            ->groupBy('Dias')
+            ->where([
+                ['fk_sub_id', '=', $sub_id],
+                ['pac_estado', '=', 1]
+            ])
+            ->whereBetween('created_at', [$date_1, $date_2])
+            ->get();
+        ;
+        return $day;
+    }
+
     public function registerMonth($sub_id) {
         $month = Paciente::select(
-            DB::raw("DATE_FORMAT(created_at,'%M %Y') as Meses"),
+            DB::raw("DATE_FORMAT(created_at,'%m-%Y') as Meses"),
             DB::raw('COUNT(*) AS Total')
         )
             ->groupBy('Meses')
-            ->where('fk_sub_id', $sub_id)
+            ->orderBy('Meses', 'ASC')
+            ->where([
+                ['fk_sub_id', '=', $sub_id],
+                ['pac_estado', '=', 0]
+            ])
+            ->get();
+
+        return $month;
+    }
+
+    public function registerMonthDeced($sub_id) {
+        $month = Paciente::select(
+            DB::raw("DATE_FORMAT(created_at,'%m %Y') as Meses"),
+            DB::raw('COUNT(*) AS Total')
+        )
+            ->groupBy('Meses')
+            ->orderBy('Meses', 'ASC')
+            ->where([
+                ['fk_sub_id', '=', $sub_id],
+                ['pac_estado', '=', 1]
+            ])
             ->get();
 
         return $month;
@@ -73,7 +140,24 @@ class GraphController extends Controller
             DB::raw('COUNT(*) AS Total')
         )
             ->groupBy('Year')
-            ->where('fk_sub_id', $sub_id)
+            ->where([
+                ['fk_sub_id', '=', $sub_id],
+                ['pac_estado', '=', 0]
+            ])
+            ->get();
+        return $year;
+    }
+
+    public function registerYearDeced($sub_id) {
+        $year = Paciente::select(
+            DB::raw("DATE_FORMAT(created_at,'%Y') as Year"),
+            DB::raw('COUNT(*) AS Total')
+        )
+            ->groupBy('Year')
+            ->where([
+                ['fk_sub_id', '=', $sub_id],
+                ['pac_estado', '=', 1]
+            ])
             ->get();
         return $year;
     }

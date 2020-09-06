@@ -41,8 +41,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/day', 'GraphController@day')->name('day');
 Route::get('/month', 'GraphController@month')->name('month');
 Route::get('/year', 'GraphController@year')->name('year');
-Route::get('/deceased', 'GraphController@deceased')->name('deceased');
+Route::get('/all', 'GraphController@all')->name('all');
 /*Controller query*/
 Route::get('/registerDay/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDay');
+Route::get('/registerDayDeced/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDayDeced');
 Route::get('/registerMonth/{sub_id}', 'GraphController@registerMonth');
+Route::get('/registerMonthDeced/{sub_id}', 'GraphController@registerMonthDeced');
 Route::get('/registerYear/{sub_id}', 'GraphController@registerYear');
+Route::get('/registerYearDeced/{sub_id}', 'GraphController@registerYearDeced');
+Route::get('/registerAll/{data}', 'GraphController@registerAll');
+Route::get('/registerAllDead/{data}', 'GraphController@registerAllDead');

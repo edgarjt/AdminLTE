@@ -24,7 +24,6 @@
                         <td>{{$fallecido->subdelegacion->sub_nombre}}</td>
                         <td>{{$fallecido->enfermedad->enf_nombre}}</td>
                         <td>{{$fallecido->emergencia->eme_tipo}}</td>
-                        <td></td>
                     </tr>
                 @endif
             @endforeach
