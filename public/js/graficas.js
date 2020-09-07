@@ -1,4 +1,4 @@
-var linkData = 'http://graficas.net/';
+var linkData = 'https://solucionesalejo.com/cruzroja/public/';
 
 $('#graphAll').click(function () {
     var year = $('#year').val();
