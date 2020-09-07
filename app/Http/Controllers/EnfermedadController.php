@@ -11,6 +11,30 @@ class EnfermedadController extends Controller
         $this->middleware('auth');
     }
 
+    public function addEnfView() {
+        return view('enfermedades.add');
+    }
+
+    public function addEnf(Request $request) {
+        $this->validate($request, [
+            'enf_nombre' => ['required', 'string', 'max:255'],
+        ]);
+
+        $enfermedad = new Enfermedad();
+
+        $enfermedad->enf_nombre = $request->input('enf_nombre');
+
+        $enfermedad->save();
+
+        if ($enfermedad) {
+            $enfermedades = Enfermedad::all();
+
+            return redirect()->route('getEnfermedades', ['enfermedades' => $enfermedades])->with(
+                ['message' => 'La enfermedad '.$enfermedad->enf_nombre . ' se registro con éxito.']
+            );
+        }
+    }
+
     public function editEnf($id) {
 
         $data = Enfermedad::findOrFail($id);

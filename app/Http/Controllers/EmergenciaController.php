@@ -11,6 +11,30 @@ class EmergenciaController extends Controller
         $this->middleware('auth');
     }
 
+    public function addEmeView() {
+        return view('emergencias.add');
+    }
+
+    public function addEme(Request $request) {
+        $this->validate($request, [
+            'eme_tipo' => ['required', 'string', 'max:255'],
+        ]);
+
+        $emergencia = new Emergencia();
+
+        $emergencia->eme_tipo = $request->input('eme_tipo');
+
+        $emergencia->save();
+
+        if ($emergencia) {
+            $emergencias = Emergencia::all();
+
+            return redirect()->route('getEmergencias', ['emergencias' => $emergencias])->with(
+                ['message' => 'La emergencia '.$emergencia->eme_tipo . ' se registro con éxito.']
+            );
+        }
+    }
+
     public function editEme($id) {
 
         $data = Emergencia::findOrFail($id);

@@ -7,6 +7,12 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li>
+                <a href="{{route('addSubView')}}" class="btn btn-success btn-sm" style="color: white">
+                    Nuevo
+                    <i class="fa fa-plus"></i>
+                </a>
+            </li>
         </ol>
     </section>
 

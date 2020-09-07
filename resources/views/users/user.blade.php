@@ -7,10 +7,18 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li>
+                <a href="{{route('addUserView')}}" class="btn btn-success btn-sm" style="color: white">
+                    Nuevo
+                    <i class="fa fa-plus"></i>
+                </a>
+            </li>
         </ol>
     </section>
 
     @include('includes.message')
+
+
 
     <div class="bg-white" style="padding: 15px">
         <table class="table table-hover display" id="myTable">

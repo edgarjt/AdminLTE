@@ -8,6 +8,78 @@ use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
+    public function addPacView() {
+        return view('pacientes.add');
+    }
+
+    public function addFalView() {
+        return view('fallecidos.add');
+    }
+
+    public function addPac(Request $request) {
+        $this->validate($request, [
+            'pac_nombre' => ['required', 'string', 'max:255'],
+            'pac_apellidos' => ['required', 'string', 'max:255'],
+            'pac_nacimiento' => ['required', 'string', 'max:255'],
+            'fk_sub_id' => ['required', 'string', 'max:255'],
+            'fk_enf_id' => ['required', 'string', 'max:255'],
+            'fk_eme_id' => ['required', 'string', 'max:255'],
+        ]);
+
+        $paciente = new Paciente();
+
+        $paciente->pac_nombre = $request->input('pac_nombre');
+        $paciente->pac_apellidos = $request->input('pac_apellidos');
+        $paciente->pac_nacimiento = $request->input('pac_nacimiento');
+        $paciente->pac_estado = 0;
+        $paciente->fk_sub_id = $request->input('fk_sub_id');
+        $paciente->fk_enf_id = $request->input('fk_enf_id');
+        $paciente->fk_eme_id = $request->input('fk_eme_id');
+        $paciente->fk_use_id = Auth::User()->id;
+
+        $paciente->save();
+
+        if ($paciente) {
+            $pacientes = Paciente::all();
+
+            return redirect()->route('getPacientes', ['pacientes' => $pacientes])->with(
+                ['message' => 'El paciente '.$paciente->pac_nombre . ' '.$paciente->pac_apellidos. ' se registro con éxito.']
+            );
+        }
+    }
+
+    public function addFal(Request $request) {
+        $this->validate($request, [
+            'pac_nombre' => ['required', 'string', 'max:255'],
+            'pac_apellidos' => ['required', 'string', 'max:255'],
+            'pac_nacimiento' => ['required', 'string', 'max:255'],
+            'fk_sub_id' => ['required', 'string', 'max:255'],
+            'fk_enf_id' => ['required', 'string', 'max:255'],
+            'fk_eme_id' => ['required', 'string', 'max:255'],
+        ]);
+
+        $paciente = new Paciente();
+
+        $paciente->pac_nombre = $request->input('pac_nombre');
+        $paciente->pac_apellidos = $request->input('pac_apellidos');
+        $paciente->pac_nacimiento = $request->input('pac_nacimiento');
+        $paciente->pac_estado = 1;
+        $paciente->fk_sub_id = $request->input('fk_sub_id');
+        $paciente->fk_enf_id = $request->input('fk_enf_id');
+        $paciente->fk_eme_id = $request->input('fk_eme_id');
+        $paciente->fk_use_id = Auth::User()->id;
+
+        $paciente->save();
+
+        if ($paciente) {
+            $fallecidos = Paciente::all();
+
+            return redirect()->route('getFallecidos', ['fallecidos' => $fallecidos])->with(
+                ['message' => 'El fallecido '.$paciente->pac_nombre . ' '.$paciente->pac_apellidos. ' se registro con éxito.']
+            );
+        }
+    }
+
 
     public function editPac($id) {
 
