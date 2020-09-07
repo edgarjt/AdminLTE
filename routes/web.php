@@ -22,17 +22,45 @@ Auth::routes();
 
 //Admin
 Route::group(['middleware' => 'CheckRole'], function () {
+    /*Usuarios*/
     Route::get('/users', 'AdminController@getUsers')->name('getUsers');
+    Route::get('/edit/{id}', 'UserController@edit');
+    Route::post('/update', 'UserController@update')->name('update');
+    Route::get('/delete/{id}', 'UserController@delete')->name('delete');
+    /*Municipios*/
     Route::get('/municipios', 'AdminController@getMunicipios')->name('getMunicipios');
+    Route::get('/editMun/{id}', 'MunicipioController@editMun');
+    Route::post('/updateMun', 'MunicipioController@updateMun')->name('updateMun');
+    Route::get('/deleteMun/{id}', 'MunicipioController@deleteMun')->name('deleteMun');
+    /*Sub delegaciones*/
     Route::get('/subdelegaciones', 'AdminController@getSubDelegaciones')->name('getSubDelegaciones');
+    Route::get('/editSub/{id}', 'SubDelegacionController@editSub');
+    Route::post('/updateSub', 'SubDelegacionController@updateSub')->name('updateSub');
+    Route::post('/deletesub', 'SubDelegacionController@deleteSub')->name('deleteSub');
+    /*Enfermedades*/
     Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
+    Route::get('/editEnf/{id}', 'EnfermedadController@editEnf')->name('editEnf');
+    Route::post('/updateEnf', 'EnfermedadController@updateEnf')->name('updateEnf');
+    Route::get('/deleteEnf/{id}', 'EnfermedadController@deleteEnf')->name('deleteEnf');
+    /*Emergencias*/
     Route::get('/emergencias', 'AdminController@getEmergencias')->name('getEmergencias');
+    Route::get('/editEme/{id}', 'EmergenciaController@editEme')->name('editEme');
+    Route::post('/updateEme', 'EmergenciaController@updateEme')->name('updateEme');
+    Route::get('/deleteEme/{id}', 'EmergenciaController@deleteEme')->name('deleteEme');
 });
 
 //Operadores
 Route::group(['middleware' => 'State'], function () {
+    /*Pacientes*/
     Route::get('/pacientes', 'AdminController@getPacientes')->name('getPacientes');
+    Route::get('/editPac/{id}', 'PacienteController@editPac')->name('editPac');
+    Route::post('/updatePac', 'PacienteController@updatePac')->name('updatePac');
+    Route::get('/deletePac/{id}', 'PacienteController@deletePac')->name('deletePac');
+    /*Fallecidos*/
     Route::get('/fallecidos', 'AdminController@getFallecidos')->name('getFallecidos');
+    Route::get('/editFal/{id}', 'PacienteController@editFal')->name('editFal');
+    Route::post('/updateFal', 'PacienteController@updateFal')->name('updateFal');
+    Route::get('/deleteFal/{id}', 'PacienteController@deleteFal')->name('deleteFal');
 });
 
 

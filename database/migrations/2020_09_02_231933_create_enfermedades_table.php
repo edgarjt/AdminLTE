@@ -17,6 +17,7 @@ class CreateEnfermedadesTable extends Migration
             $table->id('enf_id');
             $table->string('enf_nombre');
             $table->date('created_at')->nullable();
+            $table->date('updated_at')->nullable();
         });
     }
 

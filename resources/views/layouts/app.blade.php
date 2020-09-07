@@ -6,18 +6,18 @@
     <title>Graficas</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('dist/css/skins/skin-red.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     {{--Data table--}}
     <link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>
@@ -41,7 +41,7 @@
         <!-- Logo -->
         <a href="{{route('home')}}" class="logo">
             <div style="background: white" class="logo-lg">
-                <img src="img/logo0.png" alt="Logo" width="45%">
+                <img src="{{asset('img/logo0.png')}}" alt="Logo" width="45%">
             </div>
             <span class="logo-mini"><b>CRZ</b>R</span>
         </a>
@@ -84,14 +84,14 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                                 <p>
                                     Edgar Salomón - Web Developer
@@ -148,7 +148,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->email}}</p>
@@ -183,7 +183,7 @@
 
 
                 <!-- Optionally, you can add icons to the links -->
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#"><i class="fa fa-cogs"></i> <span> Administrar</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -206,7 +206,7 @@
                 </li>
 
                 {{--Graficas--}}
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#"><i class="fa fa-pie-chart"></i> <span> Gráficas</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -332,17 +332,17 @@
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
 
 {{--Data table--}}
 <script type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"></script>
 
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 {{--ChartJS--}}
-<script src="js/Chart.min.js"></script>
+<script src="{{asset('js/Chart.min.js')}}"></script>
 {{--Graph--}}
 <script src="{{asset('js/graficas.js')}}"></script>
 
@@ -366,6 +366,10 @@
                 "sProcessing":"Procesando...",
             }
         });
+    });
+
+    $(document).on('click', 'ul li', function (){
+        $(this).addClass('active').siblings().removeClass('active');
     });
 </script>
 

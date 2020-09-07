@@ -33,6 +33,7 @@ class CreatePacientesTable extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             //$table->timestamps();
             $table->date('created_at')->nullable();
+            $table->date('updated_at')->nullable();
         });
     }
 

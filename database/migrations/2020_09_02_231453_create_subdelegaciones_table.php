@@ -22,6 +22,7 @@ class CreateSubdelegacionesTable extends Migration
             $table->foreign('fk_mun_id')->references('mun_id')->on('municipios')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->date('created_at')->nullable();
+            $table->date('updated_at')->nullable();
         });
     }
 

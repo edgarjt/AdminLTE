@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -70,6 +71,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $fecha = Carbon::now();
+
         return User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
@@ -78,7 +81,7 @@ class RegisterController extends Controller
             /* 1 = inactivo, 0 = Activo*/
             'state' => 1,
             /* 1 = admin, 0 = superAdmin*/
-            'role' => 1,
+            'role' => 1
         ]);
     }
 }

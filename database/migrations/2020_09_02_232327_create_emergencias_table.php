@@ -17,6 +17,7 @@ class CreateEmergenciasTable extends Migration
             $table->id('eme_id');
             $table->string('eme_tipo');
             $table->date('created_at')->nullable();
+            $table->date('updated_at')->nullable();
         });
     }
 

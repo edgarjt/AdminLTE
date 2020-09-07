@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('role');
             $table->rememberToken();
             $table->date('created_at')->nullable();
+            $table->date('updated_at')->nullable();
         });
     }
 

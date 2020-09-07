@@ -10,12 +10,14 @@
         </ol>
     </section>
 
+    @include('includes.message')
+
     <div class="bg-white" style="padding: 15px">
         <table class="table table-hover display" id="myTable">
             <thead>
             <tr>
-                <th>Nombre</th>
                 <th>Apellidos</th>
+                <th>Nombre</th>
                 <th>Correo</th>
                 <th>Estado</th>
                 <th>Categoria</th>
@@ -27,8 +29,8 @@
             @foreach($users as $user)
 {{--                @if(Auth::User()->name == $user->name)--}}
                 <tr>
-                    <td>{{$user->name}}</td>
                     <td>{{$user->surname}}</td>
+                    <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
                         @if($user->state == 0)
@@ -45,8 +47,17 @@
                         @endif
                     </td>
 
-                    <td><a href="#" class="text-aqua text-crud"><i class="fa fa-edit"></i></a></td>
-                    <td><a href="#" class="text-danger text-crud"><i class="fa fa-trash"></i></a></td>
+                    <td>
+                        <a href="{{url('edit/'.$user->id)}}" class="text-aqua text-crud">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{{url('delete/'.$user->id)}}" class="text-danger text-crud" onclick="return confirm('¿Estas seguro de eliminar este usuario?')">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
 
                 </tr>
             @endforeach
