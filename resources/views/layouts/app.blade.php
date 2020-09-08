@@ -218,6 +218,7 @@
                         <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
                         <li><a href="{{route('month')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
                         <li><a href="{{route('year')}}"><i class="fa fa-circle-o"></i>Año</a></li>
+                        <li><a href="{{route('reports')}}"><i class="fa fa-circle-o"></i>Reportes</a></li>
                         @endif
                     </ul>
                 </li>

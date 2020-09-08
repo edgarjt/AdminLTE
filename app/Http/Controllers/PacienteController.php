@@ -177,16 +177,9 @@ class PacienteController extends Controller
             ['message' => 'El paciente '.$paciente->pac_nombre . ' '.$paciente->pac_apellidos. ' se elimino con éxito.']
         );
     }
-/*
- select  municipios.mun_nombre, emergencias.eme_tipo, enfermedades.enf_nombre, COUNT(*) as num_reg from
-(pacientes join emergencias  on emergencias .eme_id  = pacientes.fk_eme_id) join subdelegaciones
-on subdelegaciones .sub_id = pacientes.fk_sub_id  join municipios
-on municipios.mun_id  =subdelegaciones.fk_mun_id  join enfermedades  on enfermedades .enf_id  = pacientes.fk_enf_id
-GROUP BY emergencias .eme_tipo
- */
+
     public function reports() {
         $data = Reportes::all();
-
-        return $data;
+        return view('reports.reports', ['reportes' => $data]);
     }
 }
