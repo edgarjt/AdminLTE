@@ -61,22 +61,28 @@
                         <!-- Menu toggle button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">1</span>
+
+                            <span class="label label-warning">
+                                {{\App\User::where('notification', 1)->count()}}
+                            </span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">Tienes 1 nueva notificación</li>
+                            <li class="header">Tienes {{\App\User::where('notification', 1)->count()}}  nueva notificacines</li>
                             <li>
                                 <!-- Inner Menu: contains the notifications -->
                                 <ul class="menu">
                                     <li><!-- start notification -->
-                                        <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> 1 nuevo usuario registrado
-                                        </a>
+                                        @foreach(\App\User::where('notification', 1)->orderBy('id', 'desc')->get() as $item)
+                                            <a href="{{url('edit/'.$item->id)}}">
+                                                <i class="fa fa-users text-aqua"></i>
+                                                {{$item->name}} {{$item->surname}}
+                                                se registro.
+                                            </a>
+                                        @endforeach
                                     </li>
                                     <!-- end notification -->
                                 </ul>
                             </li>
-                            <li class="footer"><a href="#">Ver todo</a></li>
                         </ul>
                     </li>
                     <!-- User Account Menu -->

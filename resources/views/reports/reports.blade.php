@@ -13,70 +13,31 @@
     @include('includes.message')
 
     <div class="bg-white" style="padding: 15px">
-{{--        <table class="table table-hover">
+        <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Emergencia</th>
-                @foreach($reportes as $item)
-                    <th>{{$item->mun_nombre}}</th>
+                <th class="bg-primary">Emergencia</th>
+                @foreach($reports as $item)
+                <th>{{$item->mun_nombre}}</th>
                 @endforeach
             </tr>
             </thead>
             <tbody>
-            @foreach($reportes as $item)
-                <tr>
-                    <td style="background: #00b7ff">
-                        <strong>{{$item->eme_tipo}}</strong>
-                    </td>
+            @foreach($reports as $item)
+                <tr class="bg-aqua">
+                    <td colspan="{{$item->count() + 1}}">{{$item->eme_tipo}}</td>
                 </tr>
-                @foreach($reportes as $item)
-                    <tr>
-                        <td>
-                            {{$item->enf_nombre}}
-                        </td>
-                    </tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                @endforeach
-            @endforeach
-
-            </tbody>
-        </table>--}}
-
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Enfermedad</th>
-                @foreach($reportes as $item)
-                    <th>{{$item->mun_nombre}}</th>
-                @endforeach
-            </tr>
-            </thead>
-
-            <tbody>
-            {{--Tipos--}}
-
-            @foreach($reportes as $item)
                 <tr>
-                    <td>
-                        <strong>{{$item->eme_tipo}}</strong>
-                    </td>
+                    <td>{{$item->enf_nombre}}</td>
+                    @foreach($reports as $enfermedad)
+                    <td>{{$enfermedad->num_reg}}</td>
+                    @endforeach
                 </tr>
-
-                <td>{{$item->enf_nombre}}</td>
-                @foreach($reportes as $item)
-                    <td>{{$item->num_reg}}</td>
-                @endforeach
             @endforeach
 
 
-
-
-            {{--Fin tipos--}}
             </tbody>
         </table>
-
     </div>
 @endsection
 

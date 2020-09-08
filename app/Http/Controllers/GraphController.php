@@ -6,6 +6,7 @@ use App\Enfermedad;
 use App\Fallecido;
 use App\Paciente;
 use App\SubDelegacion;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -160,5 +161,10 @@ class GraphController extends Controller
             ])
             ->get();
         return $year;
+    }
+
+    public function test() {
+        $users = User::all();
+
     }
 }

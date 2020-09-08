@@ -96,3 +96,5 @@ Route::get('/registerYear/{sub_id}', 'GraphController@registerYear');
 Route::get('/registerYearDeced/{sub_id}', 'GraphController@registerYearDeced');
 Route::get('/registerAll/{data}', 'GraphController@registerAll');
 Route::get('/registerAllDead/{data}', 'GraphController@registerAllDead');
+
+Route::get('/test', 'GraphController@test');

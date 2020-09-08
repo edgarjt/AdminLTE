@@ -179,7 +179,15 @@ class PacienteController extends Controller
     }
 
     public function reports() {
+/*        $data = Paciente::select(
+            DB::raw('fk_sub_id as sub_delegacion'),
+            DB::raw("fk_eme_id as emergencia"),
+            DB::raw("fk_enf_id as enfermedad"),
+            DB::raw("COUNT(*) as total_emergenci    a")
+        )
+            ->groupBy('sub_delegacion', 'emergencia')
+            ->get();*/
         $data = Reportes::all();
-        return view('reports.reports', ['reportes' => $data]);
+        return view('reports.reports', ['reports' => $data]);
     }
 }

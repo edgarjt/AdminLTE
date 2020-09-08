@@ -54,6 +54,12 @@ class UserController extends Controller
 
         $data = User::findOrFail($id);
 
+        if ($data->notification == 1) {
+            $data->notification = 0;
+            $data->update();
+        }
+
+
         return view('users.update', compact('data'));
     }
 
@@ -74,6 +80,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->state = $request->state;
         $user->role = $request->role;
+        $user->notification = 0;
 
         // Guardamos en base de datos
         $user->update();
