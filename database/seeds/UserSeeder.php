@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         //Create users root
         $date = Carbon::now();
         $users = array(
-            ['name' => 'root', 'surname'    => 'root', 'email'              => 'root@email.com', 'password'     => Hash::make('root'), 'state'      => 0, 'role'    =>0, 'notification' => 1, 'created_at' => $date->format('Y-m-d')],
+            ['name' => 'root', 'surname'    => 'root', 'email'              => 'root@email.com', 'password'     => Hash::make('root'), 'state'      => 0, 'role'    =>0, 'notification' => 0, 'created_at' => $date->format('Y-m-d')],
             ['name' => 'Edgar', 'surname'   => 'jiemenez torres', 'email'   => 'edgar@email.com', 'password'    => Hash::make('edgar'), 'state'     => 1, 'role'    =>1, 'notification' => 1, 'created_at' => $date->format('Y-m-d')],
             ['name' => 'Antonio', 'surname' => 'Silvan', 'email'            => 'antonio@email.com', 'password'  => Hash::make('antonio'), 'state'   => 1, 'role'    =>1, 'notification' => 1, 'created_at' => $date->format('Y-m-d')],
             ['name' => 'Diana', 'surname'   => 'Arias', 'email'             => 'diana@email.com', 'password'    => Hash::make('diana'), 'state'     => 1, 'role'    =>1, 'notification' => 1, 'created_at' => $date->format('Y-m-d')],
