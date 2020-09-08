@@ -22,6 +22,8 @@ Auth::routes();
 
 //Admin
 Route::group(['middleware' => 'CheckRole'], function () {
+    //Reportes
+    Route::get('reports', 'PacienteController@reports')->name('reports');
     /*Usuarios*/
     Route::get('/users', 'AdminController@getUsers')->name('getUsers');
     Route::get('/addUserView', 'UserController@addUserView')->name('addUserView');
