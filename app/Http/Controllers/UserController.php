@@ -80,7 +80,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->state = $request->state;
         $user->role = $request->role;
-        $user->notification = 0;
 
         // Guardamos en base de datos
         $user->update();

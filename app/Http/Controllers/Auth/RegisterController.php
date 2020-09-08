@@ -81,7 +81,8 @@ class RegisterController extends Controller
             /* 1 = inactivo, 0 = Activo*/
             'state' => 1,
             /* 1 = admin, 0 = superAdmin*/
-            'role' => 1
+            'role' => 1,
+            'notification' => 1,
         ]);
     }
 }
