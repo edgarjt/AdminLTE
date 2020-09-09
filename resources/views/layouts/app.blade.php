@@ -10,7 +10,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
+{{--    <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">--}}
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -143,7 +143,7 @@
                     </li>
                     <!-- Control Sidebar Toggle Button -->
                     <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        <a href="{{route('configUser')}}"><i class="fa fa-gears"></i></a>
                     </li>
                 </ul>
             </div>
@@ -177,19 +177,6 @@
                 </div>
             </div>
 
-            <!-- search form (Optional) -->
-{{--            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-                </div>
-            </form>--}}
-            <!-- /.search form -->
-
-            <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Menu</li>
                 <li>
@@ -261,10 +248,10 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            lorem ipsum
+            {{--lorem ipsum--}}
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2020 <a href="#">Company</a>.</strong> Todos los derechos reservados.
+        <strong>Copyright &copy; {{\Carbon\Carbon::now()->format('Y')}} Cruz Roja Mexicana en Tabasco.</strong>
     </footer>
 
     <!-- Control Sidebar -->
