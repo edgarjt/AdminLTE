@@ -56,6 +56,7 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
 
+                    @if(Auth::User()->role == 0)
                     <!-- Notifications Menu -->
                     <li class="dropdown notifications-menu">
                         <!-- Menu toggle button -->
@@ -85,41 +86,45 @@
                             </li>
                         </ul>
                     </li>
+                    @endif
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                            @if(Auth::User()->avatar)
+                                <img class="user-image" src="{{route('profile', ['filename' =>Auth::User()->avatar])}}" alt="User Image">
+                            @else
+                                <img src="{{asset('img/profile.jpg')}}" class="user-image" alt="User Image">
+                            @endif
+
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                                @if(Auth::User()->avatar)
+                                    <img class="img-circle" src="{{route('profile', ['filename' =>Auth::User()->avatar])}}" alt="User Image">
+                                @else
+                                    <img src="{{asset('img/profile.jpg')}}" class="img-circle" alt="User Image">
+                                @endif
 
                                 <p>
-                                    Edgar Salomón - Web Developer
-                                    <small>Miembro desde Junio. 2017</small>
+                                    {{Auth::User()->name}} -
+                                    @if(Auth::User()->role == 0)
+                                        Administrador
+                                    @else
+                                        Operardor
+                                    @endif
+                                    <small>Miembro desde {{\Carbon\Carbon::parse(Auth::User()->created_at)->format('M.Y')}}</small>
                                 </p>
                             </li>
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Ofertas</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Amigos</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
+
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    <a href="{{route('configUser')}}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
@@ -154,7 +159,12 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+
+                    @if(Auth::User()->avatar)
+                        <img src="{{route('profile', ['filename' =>Auth::User()->avatar])}}" class="img-circle tests" alt="User Image">
+                    @else
+                        <img src="{{asset('img/profile.jpg')}}" class="img-circle" alt="User Image">
+                    @endif
                 </div>
                 <div class="pull-left info">
                     <p>{{Auth::User()->email}}</p>
@@ -352,6 +362,7 @@
 <script src="{{asset('js/Chart.min.js')}}"></script>
 {{--Graph--}}
 <script src="{{asset('js/graficas.js')}}"></script>
+<script src="{{asset('js/resources.js')}}"></script>
 
 <script>
     $(document).ready(function() {

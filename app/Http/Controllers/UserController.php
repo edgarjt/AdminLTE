@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -15,6 +19,41 @@ class UserController extends Controller
     }
     public function addUserView() {
         return view('users.add');
+    }
+
+    public function config() {
+        return view('users.config');
+    }
+
+    public function setting(Request $request) {
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.Auth::User()->id]
+        ]);
+
+        $user = Auth::User();
+        $user->name = $request->input('name');
+        $user->surname = $request->input('surname');
+        $user->email = $request->input('email');
+
+        $image = $request->file('avatar');
+
+        if ($image) {
+            $image_name = time().$image->getClientOriginalName();
+            Storage::disk('users')->put($image_name, File::get($image));
+
+            $user->avatar = $image_name;
+        }
+
+        $user->update();
+
+        return redirect()->route('configUser')->with(['message' => 'Usuario actualizado correctamente.']);
+    }
+
+    public function getImage($filename) {
+        $file = Storage::disk('users')->get($filename);
+        return new Response($file, 200);
     }
 
     public function addUser(Request $request) {

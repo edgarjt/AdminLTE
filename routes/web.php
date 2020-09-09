@@ -82,6 +82,9 @@ Route::group(['middleware' => 'State'], function () {
 
 
 //User
+Route::get('/config', 'UserController@config')->name('configUser');
+Route::get('/avatar/{filename}', 'UserController@getImage')->name('profile');
+Route::post('/setting', 'UserController@setting')->name('configSetting');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/day', 'GraphController@day')->name('day');
 Route::get('/month', 'GraphController@month')->name('month');
