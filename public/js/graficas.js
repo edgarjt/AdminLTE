@@ -1,4 +1,69 @@
-var linkData = 'https://solucionesalejo.com/cruzroja/public/';
+var linkData = 'http://graficas.net/';
+
+$('#filter').click(function () {
+    $('.load').removeClass('d-none');
+    var url;
+    var sub_delegacion = $('#sub_delegacion').val();
+    var emergencia = $('#emergencia').val()== ""? null: '/'+$('#emergencia').val();
+    var enfermedad = $('#enfermedad').val()== ""? null: '/'+$('#enfermedad').val();
+
+/*    if(emergencia==null){
+    url = linkData+'reportsdata/'+sub_delegacion+(emergencia == null? '': emergencia) +(enfermedad == null? '': enfermedad+'/p2');
+
+    }else{
+        url=linkData+'reportsdata/'+sub_delegacion+(emergencia == null? '': emergencia) +(enfermedad == null? '': enfermedad);
+    }*/
+    if (sub_delegacion !=null && emergencia !=null && enfermedad !=null) {
+        url = linkData+'reportsdata/'+sub_delegacion+emergencia+enfermedad;
+    }else if (sub_delegacion !=null && enfermedad !=null && emergencia == null) {
+        url = linkData+'reportsdata/'+sub_delegacion+'/null'+enfermedad+'/p2';
+    }else {
+        url = linkData+'reportsdata/'+sub_delegacion+'/null/'+'null/'+'null'
+    }
+
+    console.log(url);
+
+  $.ajax({
+        contentType:'aplication/json',
+        dataType: 'json',
+        type: 'GET',
+        url:url,
+        success: function (result){
+            console.log(result);
+            if(result) {
+                $('.load').addClass('d-none');
+
+                $('#table').html('' +
+                    '<table class="table table-hover display"' +
+                    '<thead>' +
+                    '<tr>' +
+                    '<th>Subdelegación</th>' +
+                    '<th>Emergencia</th>' +
+                    '<th>Enfermedad</th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody id="tr-table">' +
+                    '</tbody>' +
+                    '</table>');
+
+                $('#total').html(result.length);
+
+            }
+                result.forEach(result => {
+                        $('#tr-table').append(
+                            '<tr>' +
+                            '<td>' +result.subdelegacion.sub_nombre+ '</td>' +
+                            '<td>' +result.emergencia.eme_tipo+ '</td>' +
+                            '<td>' +result.enfermedad.enf_nombre+ '</td>' +
+                            '</tr>'
+                        )
+                })
+
+        }
+    });
+
+
+})
 
 $('#graphAll').click(function () {
     var year = $('#year').val();

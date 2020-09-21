@@ -6,38 +6,66 @@
             <small>Pacientes</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li>
+                <a href="{{route('home')}}">
+                    <i class="fa fa-dashboard"></i>
+                    Inicio
+                </a>
+            </li>
         </ol>
     </section>
 
+    <div class="row">
+        <div class="col-md-3">
+            <select class="form-control" id="sub_delegacion">
+                @foreach($sub_delegacion as $item)
+                    <option value="{{$item->sub_id}}">
+                        {{$item->sub_nombre}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select class="form-control" id="emergencia">
+                <option value="">Selecciona emergencia</option>
+                @foreach($emergencia as $item)
+                    <option value="{{$item->eme_id}}">
+                        {{$item->eme_tipo}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <select class="form-control" id="enfermedad">
+                <option value="">Selecciona enfermedad</option>
+                @foreach($enfermedad as $item)
+                    <option value="{{$item->enf_id}}">
+                        {{$item->enf_nombre}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+            <button class="btn btn-primary" id="filter">
+                Filtrar
+            </button>
+
+    </div>
+
     @include('includes.message')
 
-    <div class="bg-white" style="padding: 15px">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th class="bg-primary">Emergencia</th>
-                @foreach($reports as $item)
-                <th>{{$item->mun_nombre}}</th>
-                @endforeach
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($reports as $item)
-                <tr class="bg-aqua">
-                    <td colspan="{{$item->count() + 1}}">{{$item->eme_tipo}}</td>
-                </tr>
-                <tr>
-                    <td>{{$item->enf_nombre}}</td>
-                    @foreach($reports as $enfermedad)
-                    <td>{{$enfermedad->num_reg}}</td>
-                    @endforeach
-                </tr>
-            @endforeach
-
-
-            </tbody>
-        </table>
+    <div>
+        <h3>Total: <strong id="total">0</strong></h3>
     </div>
+
+    <div style="text-align: center" class="d-none load">
+        <img src="{{asset('img/load.gif')}}" alt="Load" width="30">
+    </div>
+
+    <div id="table" class="bg-white" style="margin-top: 20px">
+    </div>
+
+
 @endsection
 

@@ -46,3 +46,6 @@ label[for="avatar"] {
 .tests {
     object-fit: cover !important;
 }
+.mt-5 {
+    margin-top: 35px;
+}

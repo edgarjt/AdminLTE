@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Emergencia;
+use App\Enfermedad;
 use App\Paciente;
 use App\Reportes;
+use App\SubDelegacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -178,7 +181,58 @@ class PacienteController extends Controller
         );
     }
 
-    public function reports() {
+    public function reportsData($sub = null, $eme = null, $enf = null, $p2=null) {
+
+
+        if ($sub && $eme!='null' && $enf && $p2!='p2') {
+
+            $pacientes = Paciente::where([
+                'fk_sub_id' => $sub, 'fk_eme_id' => $eme, 'fk_enf_id' => $enf
+            ])
+                ->select('fk_sub_id', 'fk_enf_id', 'fk_eme_id')
+                ->with('subdelegacion:sub_id,sub_nombre')
+                ->with('emergencia:eme_id,eme_tipo')
+                ->with('enfermedad:enf_id,enf_nombre')
+                ->get();
+            return $pacientes;
+
+        } elseif($sub && $eme!='null') {
+            $pacientes = Paciente::where([
+                'fk_sub_id' => $sub, 'fk_eme_id' => $eme
+            ])
+                ->select('fk_sub_id', 'fk_enf_id', 'fk_eme_id')
+                ->with('subdelegacion:sub_id,sub_nombre')
+                ->with('emergencia:eme_id,eme_tipo')
+                ->with('enfermedad:enf_id,enf_nombre')
+                ->get();
+
+           return $pacientes;
+
+        } elseif($sub && $eme=='null' && $enf && $p2=='p2') {
+            $pacientes = Paciente::where([
+                'fk_sub_id' => $sub, 'fk_enf_id' => $enf
+            ])
+                ->select('fk_sub_id', 'fk_enf_id', 'fk_eme_id')
+                ->with('subdelegacion:sub_id,sub_nombre')
+                ->with('emergencia:eme_id,eme_tipo')
+                ->with('enfermedad:enf_id,enf_nombre')
+                ->get();
+            return $pacientes;
+
+        }elseif( $sub && $eme=='null' && $enf=='null' && $p2=='null') {
+            $pacientes = Paciente::where([
+                'fk_sub_id' => $sub
+            ])
+                ->select('fk_sub_id', 'fk_enf_id', 'fk_eme_id')
+                ->with('subdelegacion:sub_id,sub_nombre')
+                ->with('emergencia:eme_id,eme_tipo')
+                ->with('enfermedad:enf_id,enf_nombre')
+                ->get();
+
+            return $pacientes;
+
+        }
+
 /*        $data = Paciente::select(
             DB::raw('fk_sub_id as sub_delegacion'),
             DB::raw("fk_eme_id as emergencia"),
@@ -187,7 +241,19 @@ class PacienteController extends Controller
         )
             ->groupBy('sub_delegacion', 'emergencia')
             ->get();*/
-        $data = Reportes::all();
-        return view('reports.reports', ['reports' => $data]);
+/*        $data = Reportes::all();
+        return view('reports.reports', ['reports' => $data]);*/
+    }
+
+    public function reports() {
+        $sub = SubDelegacion::all();
+        $eme = Emergencia::all();
+        $enfermedad = Enfermedad::all();
+
+        return view('reports.reports', [
+            'sub_delegacion' => $sub,
+            'emergencia' => $eme,
+            'enfermedad' => $enfermedad
+        ]);
     }
 }
