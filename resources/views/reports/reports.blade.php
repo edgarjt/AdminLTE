@@ -2,8 +2,8 @@
 @section('content')
     <section class="content-header" style="margin-bottom: 15px">
         <h1>
-            Administrar:
-            <small>Pacientes</small>
+            Reportes:
+            <small>filtrado</small>
         </h1>
         <ol class="breadcrumb">
             <li>
