@@ -7,6 +7,8 @@ $('#filter').click(function () {
     var emergencia = $('#emergencia').val()== ""? null: '/'+$('#emergencia').val();
     var enfermedad = $('#enfermedad').val()== ""? null: '/'+$('#enfermedad').val();
 
+    console.log(sub_delegacion, emergencia, enfermedad);
+
 /*    if(emergencia==null){
     url = linkData+'reportsdata/'+sub_delegacion+(emergencia == null? '': emergencia) +(enfermedad == null? '': enfermedad+'/p2');
 
@@ -17,7 +19,10 @@ $('#filter').click(function () {
         url = linkData+'reportsdata/'+sub_delegacion+emergencia+enfermedad;
     }else if (sub_delegacion !=null && enfermedad !=null && emergencia == null) {
         url = linkData+'reportsdata/'+sub_delegacion+'/null'+enfermedad+'/p2';
-    }else {
+    } else if(sub_delegacion !=null && emergencia !=null && enfermedad == null) {
+        url = linkData+'reportsdata/'+sub_delegacion+emergencia+'/null'+'/p2';
+    }
+    else {
         url = linkData+'reportsdata/'+sub_delegacion+'/null/'+'null/'+'null'
     }
 
