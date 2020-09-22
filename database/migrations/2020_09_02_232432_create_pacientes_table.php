@@ -17,7 +17,6 @@ class CreatePacientesTable extends Migration
             $table->id('pac_id');
             $table->string('pac_nombre');
             $table->string('pac_apellidos');
-            $table->string('pac_nacimiento');
             $table->integer('pac_estado');
             $table->unsignedBigInteger('fk_sub_id');
             $table->unsignedBigInteger('fk_enf_id');

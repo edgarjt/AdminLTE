@@ -24,7 +24,6 @@
             <tr>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Nacimiento</th>
                 <th>Municipio</th>
                 <th>Sub delegación</th>
                 <th>Enfermedad</th>
@@ -39,7 +38,6 @@
                 <tr>
                     <td>{{$paciente->pac_nombre}}</td>
                     <td>{{$paciente->pac_apellidos}}</td>
-                    <td>{{$paciente->pac_nacimiento}}</td>
                     <td>{{$paciente->subdelegacion->municipio->mun_nombre}}</td>
                     <td>{{$paciente->subdelegacion->sub_nombre}}</td>
                     <td>{{$paciente->enfermedad->enf_nombre}}</td>

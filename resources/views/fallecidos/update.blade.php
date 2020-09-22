@@ -40,17 +40,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Nacimiento</label>
-                        <input type="date" name="pac_nacimiento" class="form-control" value="{{$data->pac_nacimiento}}">
-
-                        @error('pac_nacimiento')
-                        <span class="invalid-feedback text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label>Estado del paciente</label>
                         <select class="form-control" name="pac_estado">
                             <option value="0">Emergencia</option>

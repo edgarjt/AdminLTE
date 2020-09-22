@@ -41,17 +41,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Nacimiento</label>
-                        <input type="date" name="pac_nacimiento" class="form-control">
-
-                        @error('pac_nacimiento')
-                        <span class="invalid-feedback text-danger" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label>Sub delegación</label>
                         <select name="fk_sub_id" class="form-control">
                             @foreach(\App\SubDelegacion::all() as $item)

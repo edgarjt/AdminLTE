@@ -24,7 +24,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>Nacimiento</th>
+                <th>Fecha de fallecimiento</th>
                 <th>Municipio</th>
                 <th>Sub delegación</th>
                 <th>Enfermedad</th>
@@ -39,7 +39,7 @@
                     <tr>
                         <td>{{$fallecido->pac_nombre}}</td>
                         <td>{{$fallecido->pac_apellidos}}</td>
-                        <td>{{$fallecido->pac_nacimiento}}</td>
+                        <td>{{$fallecido->created_at->format('d-m-Y')}}</td>
                         <td>{{$fallecido->subdelegacion->municipio->mun_nombre}}</td>
                         <td>{{$fallecido->subdelegacion->sub_nombre}}</td>
                         <td>{{$fallecido->enfermedad->enf_nombre}}</td>

@@ -25,7 +25,6 @@ class PacienteController extends Controller
         $this->validate($request, [
             'pac_nombre' => ['required', 'string', 'max:255'],
             'pac_apellidos' => ['required', 'string', 'max:255'],
-            'pac_nacimiento' => ['required', 'string', 'max:255'],
             'fk_sub_id' => ['required', 'string', 'max:255'],
             'fk_enf_id' => ['required', 'string', 'max:255'],
             'fk_eme_id' => ['required', 'string', 'max:255'],
@@ -35,7 +34,6 @@ class PacienteController extends Controller
 
         $paciente->pac_nombre = $request->input('pac_nombre');
         $paciente->pac_apellidos = $request->input('pac_apellidos');
-        $paciente->pac_nacimiento = $request->input('pac_nacimiento');
         $paciente->pac_estado = 0;
         $paciente->fk_sub_id = $request->input('fk_sub_id');
         $paciente->fk_enf_id = $request->input('fk_enf_id');
@@ -57,7 +55,6 @@ class PacienteController extends Controller
         $this->validate($request, [
             'pac_nombre' => ['required', 'string', 'max:255'],
             'pac_apellidos' => ['required', 'string', 'max:255'],
-            'pac_nacimiento' => ['required', 'string', 'max:255'],
             'fk_sub_id' => ['required', 'string', 'max:255'],
             'fk_enf_id' => ['required', 'string', 'max:255'],
             'fk_eme_id' => ['required', 'string', 'max:255'],
@@ -67,7 +64,6 @@ class PacienteController extends Controller
 
         $paciente->pac_nombre = $request->input('pac_nombre');
         $paciente->pac_apellidos = $request->input('pac_apellidos');
-        $paciente->pac_nacimiento = $request->input('pac_nacimiento');
         $paciente->pac_estado = 1;
         $paciente->fk_sub_id = $request->input('fk_sub_id');
         $paciente->fk_enf_id = $request->input('fk_enf_id');
@@ -104,7 +100,6 @@ class PacienteController extends Controller
         $this->validate($request, [
             'pac_nombre' => ['required'],
             'pac_apellidos' => ['required'],
-            'pac_nacimiento' => ['required'],
             'pac_estado' => ['required']
         ]);
 
@@ -112,7 +107,6 @@ class PacienteController extends Controller
 
         $paciente->pac_nombre = $request->pac_nombre;
         $paciente->pac_apellidos = $request->pac_apellidos;
-        $paciente->pac_nacimiento = $request->pac_nacimiento;
         $paciente->pac_estado = $request->pac_estado;
         $paciente->fk_sub_id = $request->fk_sub_id;
         $paciente->fk_enf_id = $request->fk_enf_id;
@@ -133,7 +127,6 @@ class PacienteController extends Controller
         $this->validate($request, [
             'pac_nombre' => ['required'],
             'pac_apellidos' => ['required'],
-            'pac_nacimiento' => ['required'],
             'pac_estado' => ['required']
         ]);
 
@@ -141,7 +134,6 @@ class PacienteController extends Controller
 
         $paciente->pac_nombre = $request->pac_nombre;
         $paciente->pac_apellidos = $request->pac_apellidos;
-        $paciente->pac_nacimiento = $request->pac_nacimiento;
         $paciente->pac_estado = $request->pac_estado;
         $paciente->fk_sub_id = $request->fk_sub_id;
         $paciente->fk_enf_id = $request->fk_enf_id;

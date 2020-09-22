@@ -22,9 +22,6 @@ Auth::routes();
 
 //Admin
 Route::group(['middleware' => 'CheckRole'], function () {
-    //Reportes
-    Route::get('reportsdata/{sub?}/{eme?}/{enf?}/{p2?}', 'PacienteController@reportsData')->name('reports');
-    Route::get('reports', 'PacienteController@reports')->name('reports');
     /*Usuarios*/
     Route::get('/users', 'AdminController@getUsers')->name('getUsers');
     Route::get('/addUserView', 'UserController@addUserView')->name('addUserView');
@@ -65,6 +62,9 @@ Route::group(['middleware' => 'CheckRole'], function () {
 
 //Operadores
 Route::group(['middleware' => 'State'], function () {
+    //Reportes
+    Route::get('reportsdata/{sub?}/{eme?}/{enf?}/{p2?}', 'PacienteController@reportsData')->name('reports');
+    Route::get('reports', 'PacienteController@reports')->name('reports');
     /*Pacientes*/
     Route::get('/pacientes', 'AdminController@getPacientes')->name('getPacientes');
     Route::get('/editPac/{id}', 'PacienteController@editPac')->name('editPac');
