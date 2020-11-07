@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Emergencia;
 use App\Enfermedad;
+use App\Historial;
 use App\Paciente;
 use App\Reportes;
 use App\SubDelegacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PacienteController extends Controller
 {
@@ -22,6 +24,7 @@ class PacienteController extends Controller
     }
 
     public function addPac(Request $request) {
+
         $this->validate($request, [
             'pac_nombre' => ['required', 'string', 'max:255'],
             'pac_apellidos' => ['required', 'string', 'max:255'],
@@ -30,8 +33,11 @@ class PacienteController extends Controller
             'fk_eme_id' => ['required', 'string', 'max:255'],
         ]);
 
+        $clave_pac = substr(time(),5).Str::random(5);
+
         $paciente = new Paciente();
 
+        $paciente->pac_clave = $clave_pac;
         $paciente->pac_nombre = $request->input('pac_nombre');
         $paciente->pac_apellidos = $request->input('pac_apellidos');
         $paciente->pac_estado = 0;
@@ -41,6 +47,16 @@ class PacienteController extends Controller
         $paciente->fk_use_id = Auth::User()->id;
 
         $paciente->save();
+
+        $historial = new Historial();
+
+        $historial->fk_pac_clave = $clave_pac;
+        $historial->fk_sub_id = $request->input('fk_sub_id');
+        $historial->fk_enf_id = $request->input('fk_enf_id');
+        $historial->fk_eme_id = $request->input('fk_eme_id');
+        $historial->fk_use_id = Auth::User()->id;
+
+        $historial->save();
 
         if ($paciente) {
             $pacientes = Paciente::all();
@@ -104,7 +120,20 @@ class PacienteController extends Controller
         ]);
 
         $paciente = Paciente::findOrFail($request->pac_id);
+        //historial
 
+        $historial = new Historial();
+
+        $historial->fk_pac_clave = $paciente->pac_clave;
+        $historial->fk_sub_id = $request->fk_sub_id;
+        $historial->fk_enf_id = $request->fk_enf_id;
+        $historial->fk_eme_id = $request->fk_enf_id;
+        $historial->fk_use_id = Auth::User()->id;
+
+        $historial->save();
+
+
+        //Actualizar paciente
         $paciente->pac_nombre = $request->pac_nombre;
         $paciente->pac_apellidos = $request->pac_apellidos;
         $paciente->pac_estado = $request->pac_estado;

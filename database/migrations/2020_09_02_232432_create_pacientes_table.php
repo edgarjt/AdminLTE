@@ -15,6 +15,7 @@ class CreatePacientesTable extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id('pac_id');
+            $table->string('pac_clave');
             $table->string('pac_nombre');
             $table->string('pac_apellidos');
             $table->integer('pac_estado');

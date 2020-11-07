@@ -1,4 +1,4 @@
-var linkData = 'https://solucionesalejo.com/cruzroja/public/';
+var linkData = 'http://graficas.net/';
 
 $('#filter').click(function () {
     $('.load').removeClass('d-none');

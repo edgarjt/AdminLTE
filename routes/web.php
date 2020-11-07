@@ -79,6 +79,9 @@ Route::group(['middleware' => 'State'], function () {
     Route::get('/editFal/{id}', 'PacienteController@editFal')->name('editFal');
     Route::post('/updateFal', 'PacienteController@updateFal')->name('updateFal');
     Route::get('/deleteFal/{id}', 'PacienteController@deleteFal')->name('deleteFal');
+    /*Reportes paramedicos*/
+    Route::get('reportsMedico', 'ReportsController@getReports')->name('reportsMedico');
+    Route::get('reportsPaciente/{pac_id}/{pac_nombre}/{pac_apellidos}', 'ReportsController@reportsPaciente')->name('reportsPaciente');
 });
 
 

@@ -35,7 +35,7 @@
             </thead>
             <tbody>
             @foreach($users as $user)
-{{--                @if(Auth::User()->name == $user->name)--}}
+                @if(Auth::User()->name != $user->name)
                 <tr>
                     <td>{{$user->surname}}</td>
                     <td>{{$user->name}}</td>
@@ -68,6 +68,7 @@
                     </td>
 
                 </tr>
+                @endif
             @endforeach
             </tbody>
         </table>

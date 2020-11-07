@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubDelegacionesSeeder::class);
         $this->call(EnfermedadesSeeder::class);
         $this->call(EmergenciasSeeder::class);
-        $this->call(PacientesSeeder::class);
+        //$this->call(PacientesSeeder::class);
     }
 }

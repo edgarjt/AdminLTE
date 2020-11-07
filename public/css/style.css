@@ -16,6 +16,9 @@ canvas {
 .tex-center {
     text-align: center;
 }
+.tex-dark {
+    color: black !important;
+}
 .avatar {
     width: 150px;
     object-fit: contain;
