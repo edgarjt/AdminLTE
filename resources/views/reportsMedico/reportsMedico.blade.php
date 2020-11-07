@@ -36,7 +36,7 @@
                         <td>{{$paciente->enfermedad->enf_nombre}}</td>
                         <td>{{$paciente->emergencia->eme_tipo}}</td>
                         <td class="text-center">
-                            <a href="{{url('reportsPaciente/'.$paciente->pac_clave.'/'.$paciente->pac_nombre.'/'.$paciente->pac_apellidos)}}"><i class="fa fa-file-pdf-o"></i></a>
+                            <a href="{{url('reportsPaciente/'.$paciente->pac_clave.'/'.$paciente->pac_nombre.'/'.$paciente->pac_apellidos)}}" target="_blank" referrerpolicy="no-referrer"><i class="fa fa-file-pdf-o"></i></a>
                         </td>
                     </tr>
                 @endif

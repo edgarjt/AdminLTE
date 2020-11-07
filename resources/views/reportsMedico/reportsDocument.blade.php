@@ -24,6 +24,7 @@
         <h4>Información del paciente</h4>
         <p><b>Nombre:</b> {{$nombre}}</p>
         <p><b>Apellidos:</b> {{$apellidos}}</p>
+        <p><b>Veces atendido(a):</b> {{count($data)}}</p>
     </div>
     <br>
 
