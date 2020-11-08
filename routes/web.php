@@ -44,10 +44,6 @@ Route::group(['middleware' => 'CheckRole'], function () {
     Route::post('/updateSub', 'SubDelegacionController@updateSub')->name('updateSub');
     Route::post('/deletesub', 'SubDelegacionController@deleteSub')->name('deleteSub');
     /*Enfermedades*/
-    Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
-    Route::get('/addEnfView', 'EnfermedadController@addEnfView')->name('addEnfView');
-    Route::get('/addEnfView', 'EnfermedadController@addEnfView')->name('addEnfView');
-    Route::post('/addEnf', 'EnfermedadController@addEnf')->name('addEnf');
     Route::get('/editEnf/{id}', 'EnfermedadController@editEnf')->name('editEnf');
     Route::post('/updateEnf', 'EnfermedadController@updateEnf')->name('updateEnf');
     Route::get('/deleteEnf/{id}', 'EnfermedadController@deleteEnf')->name('deleteEnf');
@@ -62,6 +58,10 @@ Route::group(['middleware' => 'CheckRole'], function () {
 
 //Operadores
 Route::group(['middleware' => 'State'], function () {
+    /*Enfermedades*/
+    Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
+    Route::get('/addEnfView', 'EnfermedadController@addEnfView')->name('addEnfView');
+    Route::post('/addEnf', 'EnfermedadController@addEnf')->name('addEnf');
     //Reportes
     Route::get('reportsdata/{sub?}/{eme?}/{enf?}/{p2?}', 'PacienteController@reportsData')->name('reports');
     Route::get('reports', 'PacienteController@reports')->name('reports');
@@ -84,24 +84,26 @@ Route::group(['middleware' => 'State'], function () {
     Route::get('reportsPaciente/{pac_id}/{pac_nombre}/{pac_apellidos}', 'ReportsController@reportsPaciente')->name('reportsPaciente');
 });
 
+Route::group(['middleware' => 'checkRoleOperador'], function () {
+    Route::get('/day', 'GraphController@day')->name('day');
+    Route::get('/month', 'GraphController@month')->name('month');
+    Route::get('/year', 'GraphController@year')->name('year');
+    Route::get('/all', 'GraphController@all')->name('all');
+    Route::get('/registerDay/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDay');
+    Route::get('/registerDayDeced/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDayDeced');
+    Route::get('/registerMonth/{sub_id}', 'GraphController@registerMonth');
+    Route::get('/registerMonthDeced/{sub_id}', 'GraphController@registerMonthDeced');
+    Route::get('/registerYear/{sub_id}', 'GraphController@registerYear');
+    Route::get('/registerYearDeced/{sub_id}', 'GraphController@registerYearDeced');
+    Route::get('/registerAll/{data}', 'GraphController@registerAll');
+    Route::get('/registerAllDead/{data}', 'GraphController@registerAllDead');
+    Route::get('/test', 'GraphController@test');
+});
+
 
 //User
 Route::get('/config', 'UserController@config')->name('configUser');
 Route::get('/avatar/{filename}', 'UserController@getImage')->name('profile');
 Route::post('/setting', 'UserController@setting')->name('configSetting');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/day', 'GraphController@day')->name('day');
-Route::get('/month', 'GraphController@month')->name('month');
-Route::get('/year', 'GraphController@year')->name('year');
-Route::get('/all', 'GraphController@all')->name('all');
-/*Controller query*/
-Route::get('/registerDay/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDay');
-Route::get('/registerDayDeced/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDayDeced');
-Route::get('/registerMonth/{sub_id}', 'GraphController@registerMonth');
-Route::get('/registerMonthDeced/{sub_id}', 'GraphController@registerMonthDeced');
-Route::get('/registerYear/{sub_id}', 'GraphController@registerYear');
-Route::get('/registerYearDeced/{sub_id}', 'GraphController@registerYearDeced');
-Route::get('/registerAll/{data}', 'GraphController@registerAll');
-Route::get('/registerAllDead/{data}', 'GraphController@registerAllDead');
 
-Route::get('/test', 'GraphController@test');

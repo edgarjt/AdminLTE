@@ -115,8 +115,10 @@
                                     {{Auth::User()->name}} -
                                     @if(Auth::User()->role == 0)
                                         Administrador
+                                    @elseif(Auth::User()->role == 1)
+                                        Radio operador
                                     @else
-                                        Operardor
+                                        Paramedico
                                     @endif
                                     <small>Miembro desde {{\Carbon\Carbon::parse(Auth::User()->created_at)->format('M.Y')}}</small>
                                 </p>
@@ -198,13 +200,17 @@
                         <li><a href="{{route('getUsers')}}"><i class="fa fa-circle-o"></i>Usuarios</a></li>
                         <li><a href="{{route('getMunicipios')}}"><i class="fa fa-circle-o"></i>Municipios</a></li>
                         <li><a href="{{route('getSubDelegaciones')}}"><i class="fa fa-circle-o"></i>Sub delegaciones</a></li>
-                        <li><a href="{{route('getEnfermedades')}}"><i class="fa fa-circle-o"></i>Enfermedades</a></li>
                         <li><a href="{{route('getEmergencias')}}"><i class="fa fa-circle-o"></i>Emergencias</a></li>
                         @endif
 
-                        @if(Auth::User()->state == 0)
+                        @if(Auth::User()->state == 0 && Auth::User()->role == 0 || Auth::User()->role == 1)
+                        <li><a href="{{route('getEnfermedades')}}"><i class="fa fa-circle-o"></i>Enfermedades</a></li>
                         <li><a href="{{route('getPacientes')}}"><i class="fa fa-circle-o"></i>Pacientes</a></li>
                         <li><a href="{{route('getFallecidos')}}"><i class="fa fa-circle-o"></i>Fallecidos</a></li>
+                        @endif
+
+                        @if(Auth::User()->state == 0 && Auth::User()->role == 2)
+                        <li><a href="{{route('getPacientes')}}"><i class="fa fa-circle-o"></i>Pacientes</a></li>
                         @endif
                     </ul>
                 </li>
@@ -217,7 +223,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        @if(Auth::User()->state == 0)
+                        @if(Auth::User()->state == 0 && Auth::User()->role == 1 || Auth::User()->role == 0)
                         <li><a href="{{route('all')}}"><i class="fa fa-circle-o"></i>General</a></li>
                         <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
                         <li><a href="{{route('month')}}"><i class="fa fa-circle-o"></i>Mes</a></li>

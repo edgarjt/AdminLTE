@@ -80,8 +80,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             /* 1 = inactivo, 0 = Activo*/
             'state' => 1,
-            /* 1 = admin, 0 = superAdmin*/
-            'role' => 1,
+            /* 0 = admin, 1 = radiooperador, paramedico = 2*/
+            'role' => 2,
             'notification' => 1,
         ]);
     }
