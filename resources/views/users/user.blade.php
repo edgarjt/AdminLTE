@@ -50,8 +50,10 @@
                     <td>
                         @if($user->role == 0)
                             Administrador
-                        @else
+                        @elseif($user->role == 1)
                             Radio operador
+                        @else
+                            Paramédico
                         @endif
                     </td>
 
