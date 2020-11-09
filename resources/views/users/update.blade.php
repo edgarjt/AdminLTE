@@ -81,7 +81,7 @@
                     <option value="2">Paramédico</option>
                     <option value="1" selected>Radio operador</option>
                     <option value="0">Administrador</option>
-                @if($data->role == 0)
+                @elseif($data->role == 0)
                     <option value="2">Paramédico</option>
                     <option value="1">Radio operador</option>
                     <option value="0" selected>Administrador</option>
