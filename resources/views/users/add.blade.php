@@ -65,7 +65,8 @@
                     <div class="form-group">
                         <label>Categoria</label>
                         <select class="form-control" name="role">
-                            <option value="1" selected>Radio operador</option>
+                            <option value="2" selected>Paramédico</option>
+                            <option value="1">Radio operador</option>
                             <option value="0">Administrador</option>
                         </select>
 

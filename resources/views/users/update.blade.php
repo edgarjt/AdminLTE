@@ -72,13 +72,19 @@
         <div class="form-group">
             <label>Role</label>
             <select class="form-control" name="role">
-                @if($data->role == 0)
+                @if($data->role == 2)
+                <option value="2" selected>Paramédico</option>
                 <option value="1">Radio operador</option>
-                <option value="0" selected>Administrador</option>
+                <option value="0">Administrador</option>
 
                 @elseif($data->role == 1)
+                    <option value="2">Paramédico</option>
                     <option value="1" selected>Radio operador</option>
                     <option value="0">Administrador</option>
+                @if($data->role == 0)
+                    <option value="2">Paramédico</option>
+                    <option value="1">Radio operador</option>
+                    <option value="0" selected>Administrador</option>
                 @endif
             </select>
 
