@@ -1,5 +1,3 @@
-var linkData = 'http://graficas.net/';
-
 $('#filter').click(function () {
     $('.load').removeClass('d-none');
     var url;

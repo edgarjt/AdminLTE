@@ -370,6 +370,7 @@
 {{--ChartJS--}}
 <script src="{{asset('js/Chart.min.js')}}"></script>
 {{--Graph--}}
+<script src="{{asset('js/global.js')}}"></script>
 <script src="{{asset('js/graficas.js')}}"></script>
 <script src="{{asset('js/resources.js')}}"></script>
 
