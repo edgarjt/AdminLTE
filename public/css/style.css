@@ -1,0 +1,54 @@
+.bg-white{
+    background: white;
+}
+.m-auto {
+    margin: auto;
+}
+.d-none {
+    display: none;
+}
+canvas {
+    height: auto;
+}
+.text-crud{
+    font-size: 18px;
+}
+.tex-center {
+    text-align: center;
+}
+.tex-dark {
+    color: black !important;
+}
+.avatar {
+    width: 150px;
+    object-fit: contain;
+}
+
+label[for="avatar"] {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #106BA0;
+    display: inline-block;
+    transition: all .5s;
+    cursor: pointer;
+    padding: 15px 40px !important;
+    text-transform: uppercase;
+    width: fit-content;
+    text-align: center;
+    margin-top: 15px;
+}
+.user-panel > .image >img {
+    width: 40px !important;
+    height: 40px !important;
+}
+.img-circle{
+    border-radius: 900px!important;
+}
+
+.tests {
+    object-fit: cover !important;
+}
+.mt-5 {
+    margin-top: 35px;
+}

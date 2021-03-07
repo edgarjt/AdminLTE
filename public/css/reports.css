@@ -1,0 +1,33 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.container {
+    width: 90%;
+    height: auto;
+    margin: auto;
+}
+.container-fluid {
+    width: 100%;
+    height: auto;
+}
+.logo {
+    width: 70px;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.fecha {
+
+}
+.fecha span {
+    border-bottom: #0a0a0a 2px solid;
+}
+.historial {
+    text-align: center;
+}
+p {
+    font-size: 13px;
+}

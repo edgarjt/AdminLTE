@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,11 @@ class RegisterController extends Controller
      *
      * @return void
      */
+/*    public function __construct()
+    {
+        $this->middleware('guest');
+    }*/
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -51,6 +57,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,10 +71,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $fecha = Carbon::now();
+
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            /* 1 = inactivo, 0 = Activo*/
+            'state' => 1,
+            /* 0 = admin, 1 = radiooperador, paramedico = 2*/
+            'role' => 2,
+            'notification' => 1,
         ]);
     }
 }
