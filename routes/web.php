@@ -21,7 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 //Admin
-Route::group(['middleware' => 'CheckRole'], function () {
     /*Usuarios*/
     Route::get('/users', 'AdminController@getUsers')->name('getUsers');
     Route::get('/addUserView', 'UserController@addUserView')->name('addUserView');
@@ -54,10 +53,9 @@ Route::group(['middleware' => 'CheckRole'], function () {
     Route::get('/editEme/{id}', 'EmergenciaController@editEme')->name('editEme');
     Route::post('/updateEme', 'EmergenciaController@updateEme')->name('updateEme');
     Route::get('/deleteEme/{id}', 'EmergenciaController@deleteEme')->name('deleteEme');
-});
+
 
 //Operadores
-Route::group(['middleware' => 'State'], function () {
     /*Enfermedades*/
     Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
     Route::get('/addEnfView', 'EnfermedadController@addEnfView')->name('addEnfView');
@@ -82,9 +80,7 @@ Route::group(['middleware' => 'State'], function () {
     /*Reportes paramedicos*/
     Route::get('reportsMedico', 'ReportsController@getReports')->name('reportsMedico');
     Route::get('reportsPaciente/{pac_id}/{pac_nombre}/{pac_apellidos}', 'ReportsController@reportsPaciente')->name('reportsPaciente');
-});
 
-Route::group(['middleware' => 'checkRoleOperador'], function () {
     Route::get('/day', 'GraphController@day')->name('day');
     Route::get('/month', 'GraphController@month')->name('month');
     Route::get('/year', 'GraphController@year')->name('year');
@@ -98,7 +94,6 @@ Route::group(['middleware' => 'checkRoleOperador'], function () {
     Route::get('/registerAll/{data}', 'GraphController@registerAll');
     Route::get('/registerAllDead/{data}', 'GraphController@registerAllDead');
     Route::get('/test', 'GraphController@test');
-});
 
 
 //User
@@ -107,3 +102,7 @@ Route::get('/avatar/{filename}', 'UserController@getImage')->name('profile');
 Route::post('/setting', 'UserController@setting')->name('configSetting');
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Bitacora
+Route::get('/bitacora', function () {
+    return view('bitacora.bitacora');
+})->name('bitacora');

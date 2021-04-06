@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class MunicipioController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
 
     public function addMunView() {
         return view('municipios.add');

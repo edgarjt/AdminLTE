@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class EnfermedadController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
 
     public function addEnfView() {
         return view('enfermedades.add');

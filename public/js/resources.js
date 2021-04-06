@@ -1,21 +1,24 @@
-document.getElementById("avatar").onchange = function(e) {
-    console.log('edgar');
-    // Creamos el objeto de la clase FileReader
-    let reader = new FileReader();
+$(document).ready(function () {
+    $('#myTable').DataTable({
+        //para cambiar el lenguaje a español
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "sProcessing": "Procesando...",
+        }
+    });
+});
 
-    // Leemos el archivo subido y se lo pasamos a nuestro fileReader
-    reader.readAsDataURL(e.target.files[0]);
-
-    // Le decimos que cuando este listo ejecute el código interno
-    reader.onload = function(){
-        $('#avatar-actual').addClass('d-none');
-        let preview = document.getElementById('preview'),
-            image = document.createElement('img');
-
-        image.src = reader.result;
-        image.className = 'avatar';
-
-        preview.innerHTML = '';
-        preview.append(image);
-    };
-}
+$(document).on('click', 'ul li', function () {
+    $(this).addClass('active').siblings().removeClass('active');
+});
