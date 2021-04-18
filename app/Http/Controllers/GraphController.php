@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class GraphController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('State');
-    }
 
     public function day() {
         $subDelegaciones = SubDelegacion::all();

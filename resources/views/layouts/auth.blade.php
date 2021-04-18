@@ -42,22 +42,9 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarme') }}</a>
-                            </li>
-                        @endif
-                    @else
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Panel</a>
-                        </li>
-                    @endguest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Panel</a>
+                    </li>
                 </ul>
             </div>
         </div>
