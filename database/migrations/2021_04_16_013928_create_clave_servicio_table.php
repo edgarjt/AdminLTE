@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmergenciasTable extends Migration
+class CreateClaveServicioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateEmergenciasTable extends Migration
      */
     public function up()
     {
-        Schema::create('emergencias', function (Blueprint $table) {
-            $table->id('eme_id');
-            $table->string('eme_tipo');
-            $table->date('created_at')->nullable();
-            $table->date('updated_at')->nullable();
+        Schema::create('clave_servicio', function (Blueprint $table) {
+            $table->id();
+            $table->string('code');
+            $table->string('emergencia');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ class CreateEmergenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('emergencias');
+        Schema::dropIfExists('clave_servicio');
     }
 }
