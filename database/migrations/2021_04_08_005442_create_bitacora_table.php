@@ -20,6 +20,7 @@ class CreateBitacoraTable extends Migration
             $table->time('hora_llegada');
             $table->string('num_ambulancia');
             $table->unsignedBigInteger('tip_servicio');
+            $table->string('fallecido')->nullable();
             //Paciente
             $table->string('nombre_paciente')->nullable();
             $table->string('apellidos_paciente')->nullable();

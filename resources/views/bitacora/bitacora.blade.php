@@ -63,6 +63,13 @@
                                 <li class="list-group-item">Apellidos: <strong>{{$bitacora->apellidos_paciente}}</strong></li>
                                 <li class="list-group-item">Edad: <strong>{{$bitacora->edad_paciente}}</strong></li>
                                 <li class="list-group-item">Sexo: <strong>{{$bitacora->sexo_paciente}}</strong></li>
+                                <li class="list-group-item">Fallecido: <strong>
+                                        @if($bitacora->fallecido == 'on')
+                                            Si
+                                        @else
+                                            No
+                                        @endif
+                                    </strong></li>
                             </ul>
                         </div>
                         <div class="modal-footer">

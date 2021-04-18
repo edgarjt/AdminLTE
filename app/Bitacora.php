@@ -20,6 +20,7 @@ class Bitacora extends Model
         'hora_llegada',
         'num_ambulancia',
         'tip_servicio',
+        'fallecido',
         'nombre_paciente',
         'apellidos_paciente',
         'edad_paciente',
