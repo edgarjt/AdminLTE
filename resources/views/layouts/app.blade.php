@@ -72,7 +72,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('bitacora')}}"><i class="fa fa-circle-o"></i>Registros</a></li>
+                        <li><a href="{{route('records')}}"><i class="fa fa-circle-o"></i>Registros</a></li>
                     </ul>
                 </li>
 
@@ -88,7 +88,6 @@
                         <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
                         <li><a href="{{route('month')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
                         <li><a href="{{route('year')}}"><i class="fa fa-circle-o"></i>Año</a></li>
-                        <li><a href="{{route('reports')}}"><i class="fa fa-circle-o"></i>Reportes</a></li>
                     </ul>
                 </li>
             </ul>
@@ -122,6 +121,8 @@
 </div>
 
 <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('js/sweetalert2.js')}}"></script>
+<script src="{{asset('js/moment.min.js')}}"></script>
 <script src="{{asset('DataTables/datatables.min.js')}}"></script>
 <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>

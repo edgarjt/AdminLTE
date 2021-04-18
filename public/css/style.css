@@ -52,3 +52,14 @@ label[for="avatar"] {
 .mt-5 {
     margin-top: 35px;
 }
+#check_traslado {
+    width: 18px;
+    height: 18px;
+}
+#check_paciente {
+    width: 18px;
+    height: 18px;
+}
+#alert-register {
+    background-color: #a3d7f2;
+}

@@ -20,67 +20,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Admin
-    /*Usuarios*/
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('users')->group(function () {
     Route::get('/users', 'AdminController@getUsers')->name('getUsers');
     Route::get('/addUserView', 'UserController@addUserView')->name('addUserView');
     Route::post('/addUser', 'UserController@addUser')->name('addUser');
     Route::get('/edit/{id}', 'UserController@edit');
     Route::post('/update', 'UserController@update')->name('update');
     Route::get('/delete/{id}', 'UserController@delete')->name('delete');
-    /*Municipios*/
-    Route::get('/municipios', 'AdminController@getMunicipios')->name('getMunicipios');
-    Route::get('/addMunView', 'MunicipioController@addMunView')->name('addMunView');
-    Route::post('/addMun', 'MunicipioController@addMun')->name('addMun');
-    Route::get('/editMun/{id}', 'MunicipioController@editMun');
-    Route::post('/updateMun', 'MunicipioController@updateMun')->name('updateMun');
-    Route::get('/deleteMun/{id}', 'MunicipioController@deleteMun')->name('deleteMun');
-    /*Sub delegaciones*/
-    Route::get('/subdelegaciones', 'AdminController@getSubDelegaciones')->name('getSubDelegaciones');
-    Route::get('/addSubView', 'SubDelegacionController@addSubView')->name('addSubView');
-    Route::post('/addSub', 'SubDelegacionController@addSub')->name('addSub');
-    Route::get('/editSub/{id}', 'SubDelegacionController@editSub');
-    Route::post('/updateSub', 'SubDelegacionController@updateSub')->name('updateSub');
-    Route::post('/deletesub', 'SubDelegacionController@deleteSub')->name('deleteSub');
-    /*Enfermedades*/
-    Route::get('/editEnf/{id}', 'EnfermedadController@editEnf')->name('editEnf');
-    Route::post('/updateEnf', 'EnfermedadController@updateEnf')->name('updateEnf');
-    Route::get('/deleteEnf/{id}', 'EnfermedadController@deleteEnf')->name('deleteEnf');
-    /*Emergencias*/
-    Route::get('/emergencias', 'AdminController@getEmergencias')->name('getEmergencias');
-    Route::get('/addEmeView', 'EmergenciaController@addEmeView')->name('addEmeView');
-    Route::post('/addEme', 'EmergenciaController@addEme')->name('addEme');
-    Route::get('/editEme/{id}', 'EmergenciaController@editEme')->name('editEme');
-    Route::post('/updateEme', 'EmergenciaController@updateEme')->name('updateEme');
-    Route::get('/deleteEme/{id}', 'EmergenciaController@deleteEme')->name('deleteEme');
+});
 
-
-//Operadores
-    /*Enfermedades*/
-    Route::get('/enfermedades', 'AdminController@getEnfermedades')->name('getEnfermedades');
-    Route::get('/addEnfView', 'EnfermedadController@addEnfView')->name('addEnfView');
-    Route::post('/addEnf', 'EnfermedadController@addEnf')->name('addEnf');
-    //Reportes
-    Route::get('reportsdata/{sub?}/{eme?}/{enf?}/{p2?}', 'PacienteController@reportsData')->name('reports');
-    Route::get('reports', 'PacienteController@reports')->name('reports');
-    /*Pacientes*/
-    Route::get('/pacientes', 'AdminController@getPacientes')->name('getPacientes');
-    Route::get('/editPac/{id}', 'PacienteController@editPac')->name('editPac');
-    Route::get('/addPacView', 'PacienteController@addPacView')->name('addPacView');
-    Route::post('/addPac', 'PacienteController@addPac')->name('addPac');
-    Route::post('/updatePac', 'PacienteController@updatePac')->name('updatePac');
-    Route::get('/deletePac/{id}', 'PacienteController@deletePac')->name('deletePac');
-    /*Fallecidos*/
-    Route::get('/fallecidos', 'AdminController@getFallecidos')->name('getFallecidos');
-    Route::get('/addFalView', 'PacienteController@addFalView')->name('addFalView');
-    Route::post('/addFal', 'PacienteController@addFal')->name('addFal');
-    Route::get('/editFal/{id}', 'PacienteController@editFal')->name('editFal');
-    Route::post('/updateFal', 'PacienteController@updateFal')->name('updateFal');
-    Route::get('/deleteFal/{id}', 'PacienteController@deleteFal')->name('deleteFal');
-    /*Reportes paramedicos*/
-    Route::get('reportsMedico', 'ReportsController@getReports')->name('reportsMedico');
-    Route::get('reportsPaciente/{pac_id}/{pac_nombre}/{pac_apellidos}', 'ReportsController@reportsPaciente')->name('reportsPaciente');
-
+Route::prefix('graph')->group(function () {
     Route::get('/day', 'GraphController@day')->name('day');
     Route::get('/month', 'GraphController@month')->name('month');
     Route::get('/year', 'GraphController@year')->name('year');
@@ -94,15 +45,12 @@ Auth::routes();
     Route::get('/registerAll/{data}', 'GraphController@registerAll');
     Route::get('/registerAllDead/{data}', 'GraphController@registerAllDead');
     Route::get('/test', 'GraphController@test');
+});
 
-
-//User
-Route::get('/config', 'UserController@config')->name('configUser');
-Route::get('/avatar/{filename}', 'UserController@getImage')->name('profile');
-Route::post('/setting', 'UserController@setting')->name('configSetting');
-Route::get('/home', 'HomeController@index')->name('home');
-
-//Bitacora
-Route::get('/bitacora', function () {
-    return view('bitacora.bitacora');
-})->name('bitacora');
+Route::prefix('bitacora')->group(function () {
+    Route::get('/records', 'BitacoraController@records')->name('records');
+    Route::get('/formRecords', 'BitacoraController@formRecords')->name('formRecords');
+    Route::post('/addRecords', 'BitacoraController@addRecords')->name('addRecords');
+    Route::get('/searchRecords', 'BitacoraController@searchRecords')->name('searchRecords');
+    Route::delete('/deleteRecords', 'BitacoraController@deleteRecords')->name('deleteRecords');
+});
