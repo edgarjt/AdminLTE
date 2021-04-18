@@ -39,4 +39,11 @@ class Bitacora extends Model
         'situacion_traslado',
         'veces_atendido'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function servicio() {
+        return $this->belongsTo(ClaveServicio::class, 'tip_servicio', 'id');
+    }
 }
