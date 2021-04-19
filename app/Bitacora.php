@@ -37,6 +37,14 @@ class Bitacora extends Model
         'folio_c4',
         'tel_reporte',
         'situacion_traslado',
-        'veces_atendido'
+        'veces_atendido',
+        'delegacion'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subdelegacion() {
+        return $this->belongsTo(Delegacion::class, 'delegacion', 'id');
+    }
 }
