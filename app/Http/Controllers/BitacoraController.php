@@ -45,6 +45,7 @@ class BitacoraController extends Controller
             $bitacora->hora_llegada         =  $request->hora_llegada;
             $bitacora->num_ambulancia       =  $request->num_ambulancia;
             $bitacora->tip_servicio         =  $request->tip_servicio;
+            $bitacora->fallecido            =  $request->fallecido;
             $bitacora->nombre_paciente      =  $request->nombre_paciente;
             $bitacora->apellidos_paciente   =  $request->apellidos_paciente;
             $bitacora->edad_paciente        =  $request->edad_paciente;

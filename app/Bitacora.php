@@ -20,6 +20,7 @@ class Bitacora extends Model
         'hora_llegada',
         'num_ambulancia',
         'tip_servicio',
+        'fallecido',
         'nombre_paciente',
         'apellidos_paciente',
         'edad_paciente',
@@ -46,5 +47,9 @@ class Bitacora extends Model
      */
     public function subdelegacion() {
         return $this->belongsTo(Delegacion::class, 'delegacion', 'id');
+    }
+  
+    public function servicio() {
+        return $this->belongsTo(ClaveServicio::class, 'tip_servicio', 'id');
     }
 }
