@@ -52,11 +52,7 @@ label[for="avatar"] {
 .mt-5 {
     margin-top: 35px;
 }
-#check_traslado {
-    width: 18px;
-    height: 18px;
-}
-#check_paciente {
+.check_input {
     width: 18px;
     height: 18px;
 }

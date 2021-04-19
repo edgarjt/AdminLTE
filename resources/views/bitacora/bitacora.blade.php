@@ -34,13 +34,13 @@
             </tr>
             </thead>
             <tbody>
-            @foreach(\App\Bitacora::all() as $bitacora)
+            @foreach(\App\Bitacora::with('servicio')->get() as $bitacora)
             <tr>
                 <td>{{$bitacora->hora_llamada}}</td>
                 <td>{{$bitacora->hora_salida}}</td>
                 <td>{{$bitacora->hora_llegada}}</td>
                 <td>{{$bitacora->num_ambulancia}}</td>
-                <td>{{$bitacora->tip_servicio}}</td>
+                <td>{{$bitacora->servicio->emergencia}}</td>
                 @if(is_null($bitacora->nombre_paciente) || is_null($bitacora->apellidos_paciente))
                 <td><a href="#" data-toggle="modal" data-target="#detailPacient{{$bitacora->id}}">Sin datos</a></td>
                 @else
@@ -63,6 +63,13 @@
                                 <li class="list-group-item">Apellidos: <strong>{{$bitacora->apellidos_paciente}}</strong></li>
                                 <li class="list-group-item">Edad: <strong>{{$bitacora->edad_paciente}}</strong></li>
                                 <li class="list-group-item">Sexo: <strong>{{$bitacora->sexo_paciente}}</strong></li>
+                                <li class="list-group-item">Fallecido: <strong>
+                                        @if($bitacora->fallecido == 'on')
+                                            Si
+                                        @else
+                                            No
+                                        @endif
+                                    </strong></li>
                             </ul>
                         </div>
                         <div class="modal-footer">
