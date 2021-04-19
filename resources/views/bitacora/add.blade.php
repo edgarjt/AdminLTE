@@ -77,6 +77,21 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label>Sub delegación</label>
+                        <select class="form-control" name="delegacion">
+                            @foreach(\App\Delegacion::all() as $item)
+                                <option value="{{$item->id}}" selected>{{$item->nombre}}</option>
+                            @endforeach
+                        </select>
+
+                        @error('delegacion')
+                        <span class="invalid-feedback text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                        @enderror
+                    </div>
+
                     {{--Paciente--}}
 
                     <div class="form-group">

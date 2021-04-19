@@ -35,7 +35,8 @@ class BitacoraController extends Controller
                 'folio_frap'            =>   ['required'],
                 'folio_c4'              =>   ['required'],
                 'tel_reporte'           =>   ['required'],
-                'situacion_traslado'    =>   ['required']
+                'situacion_traslado'    =>   ['required'],
+                'delegacion'    =>   ['required']
             ]);
 
             $bitacora = new Bitacora();
@@ -63,6 +64,7 @@ class BitacoraController extends Controller
             $bitacora->tel_reporte          =  $request->tel_reporte;
             $bitacora->situacion_traslado   =  $request->situacion_traslado;
             $bitacora->veces_atendido       =  1;
+            $bitacora->delegacion           =  $request->delegacion;
             $bitacora->save();
 
             if (is_null($bitacora)) {

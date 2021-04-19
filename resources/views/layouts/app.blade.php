@@ -84,10 +84,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('all')}}"><i class="fa fa-circle-o"></i>General</a></li>
-                        <li><a href="{{route('day')}}"><i class="fa fa-circle-o"></i>Dias</a></li>
-                        <li><a href="{{route('month')}}"><i class="fa fa-circle-o"></i>Mes</a></li>
-                        <li><a href="{{route('year')}}"><i class="fa fa-circle-o"></i>Año</a></li>
+                        <li><a href="{{route('concentrated')}}"><i class="fa fa-circle-o"></i>Gráficas y concentrado</a></li>
                     </ul>
                 </li>
             </ul>

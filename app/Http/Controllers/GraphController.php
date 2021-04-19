@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enfermedad;
-use App\Fallecido;
-use App\Paciente;
-use App\SubDelegacion;
+use App\Bitacora;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -14,24 +11,8 @@ use Illuminate\Support\Facades\DB;
 class GraphController extends Controller
 {
 
-    public function day() {
-        $subDelegaciones = SubDelegacion::all();
-        return view('day.day', ['subdelegaciones' => $subDelegaciones]);
-    }
-
-    public function month() {
-        $subDelegacion = SubDelegacion::all();
-        return view('month.month', ['subdelegaciones' => $subDelegacion]);
-    }
-
-    public function year() {
-        $subDelegacion = SubDelegacion::all();
-        return view('year.year', ['subdelegaciones' => $subDelegacion]);
-    }
-
-    public function all() {
-        $subDelegacion = SubDelegacion::all();
-        return view('all.all', ['subdelegaciones' => $subDelegacion]);
+    public function viewconcentrated() {
+        return view('graph.graficaConcentrado');
     }
 
     public function registerAll($data) {
@@ -48,6 +29,17 @@ class GraphController extends Controller
             ])
             ->get();
         return $register;
+    }
+
+    public function tipServicio(Request $request) {
+        $day = Bitacora::select(
+            DB::raw("DATE_FORMAT(created_at,'%d') AS Dias"),
+            DB::raw("COUNT(*) AS Total")
+        )
+            ->groupBy('tip_servicio')
+            ->whereDate('created_at', '2021-04-19')
+            ->get();;
+        return $day;
     }
 
     public function registerAllDead($data) {
@@ -157,10 +149,5 @@ class GraphController extends Controller
             ])
             ->get();
         return $year;
-    }
-
-    public function test() {
-        $users = User::all();
-
     }
 }
