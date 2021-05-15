@@ -15,7 +15,13 @@
         <div class="d-flex align-items-start container-fluid">
             <select class="custom-select" id="service">
                 <option value="1" selected>Servicios</option>
-                <option value="2">servicio por delegaciones</option>
+                <option value="2">Servicio por delegaciones</option>
+            </select>
+
+            <select class="custom-select d-none" id="delegacion">
+                @foreach(\App\Delegacion::all() as $item)
+                    <option value="{{$item->id}}" selected>{{$item->nombre}}</option>
+                @endforeach
             </select>
 
             <select class="custom-select" id="action">

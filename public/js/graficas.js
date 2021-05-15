@@ -18,22 +18,52 @@ $('#action').change(function (e){
     }
 });
 
+$('#service').change(function (e) {
+    var service = $('#service').val();
+
+    if (service === '1') {
+        $('#delegacion').addClass('d-none');
+    }else {
+        $('#delegacion').removeClass('d-none');
+    }
+});
+
 $('#graph').click(function () {
     var dateOne = $('#dateOne').val();
     var dateYear = $('#year').val();
     var service = $('#service').val();
     var action = $('#action').val();
+    var delegacion = $('#delegacion').val();
     var data;
+    var method;
 
-    if (action === 'day' || action === 'month' || action === 'twoMonth') {
-        data = {
-            'action': action,
-            'date': dateOne
+    if (service === '1') {
+        method = 'tipServicio';
+        if (action === 'day' || action === 'month' || action === 'twoMonth') {
+            data = {
+                'action': action,
+                'date': dateOne
+            }
+        }else if (action === 'year') {
+            data = {
+                'action': action,
+                'date': dateYear
+            }
         }
-    }else if (action === 'year') {
-        data = {
-            'action': action,
-            'date': dateYear
+    }else {
+        method = 'tipServicioDelegacion';
+        if (action === 'day' || action === 'month' || action === 'twoMonth') {
+            data = {
+                'action': action,
+                'date': dateOne,
+                'delegacion': delegacion
+            }
+        }else if (action === 'year') {
+            data = {
+                'action': action,
+                'date': dateYear,
+                'delegacion': delegacion
+            }
         }
     }
 
@@ -43,10 +73,9 @@ $('#graph').click(function () {
         contentType:'aplication/json',
         dataType: 'json',
         type: 'GET',
-        url:linkData+'graph/tipServicio',
+        url:linkData+'graph/'+method,
         data: data,
         success: function (result){
-            console.log(result.type);
             var label = [];
             var data = [];
             var labelInfo = '#' + result.type;
