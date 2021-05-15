@@ -42,9 +42,11 @@ class CreateBitacoraTable extends Migration
             $table->string('tel_reporte');
             $table->string('situacion_traslado');
             $table->integer('veces_atendido');
+            $table->unsignedBigInteger('delegacion');
             $table->timestamps();
 
             $table->foreign('tip_servicio')->references('id')->on('clave_servicio');
+            $table->foreign('delegacion')->references('id')->on('delegaciones');
         });
     }
 
