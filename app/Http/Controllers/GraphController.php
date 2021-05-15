@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enfermedad;
-use App\Fallecido;
-use App\Paciente;
-use App\SubDelegacion;
+use App\Bitacora;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -14,24 +11,8 @@ use Illuminate\Support\Facades\DB;
 class GraphController extends Controller
 {
 
-    public function day() {
-        $subDelegaciones = SubDelegacion::all();
-        return view('day.day', ['subdelegaciones' => $subDelegaciones]);
-    }
-
-    public function month() {
-        $subDelegacion = SubDelegacion::all();
-        return view('month.month', ['subdelegaciones' => $subDelegacion]);
-    }
-
-    public function year() {
-        $subDelegacion = SubDelegacion::all();
-        return view('year.year', ['subdelegaciones' => $subDelegacion]);
-    }
-
-    public function all() {
-        $subDelegacion = SubDelegacion::all();
-        return view('all.all', ['subdelegaciones' => $subDelegacion]);
+    public function viewconcentrated() {
+        return view('graph.graficaConcentrado');
     }
 
     public function registerAll($data) {
@@ -50,20 +31,62 @@ class GraphController extends Controller
         return $register;
     }
 
-    public function registerAllDead($data) {
-
-        $register = Paciente::select(
-            DB::raw("DATE_FORMAT(created_at,'%m %Y') AS Mes"),
-            DB::raw("COUNT(*) AS Total")
-        )
-            ->groupBy('Mes')
-            ->orderBy('Mes', 'ASC')
-            ->where([
-                ['created_at', 'like', $data.'%'],
-                ['pac_estado', '=', 1]
-            ])
-            ->get();
-        return $register;
+/*$q->whereDay('created_at', '=', date('d'));
+$q->whereMonth('created_at', '=', date('m'));
+$q->whereYear('created_at', '=', date('Y'));*/
+    public function tipServicio(Request $request)
+    {
+        switch ($request->action) {
+            case "day":
+                $day = Bitacora::select(
+                    DB::raw("DATE_FORMAT(created_at,'%d') AS dia"),
+                    DB::raw("COUNT(*) AS total"),
+                    DB::raw("tip_servicio")
+                )
+                    ->with('servicio:id,emergencia')
+                    ->groupBy('tip_servicio')
+                    ->whereDate('created_at', $request->date)
+                    ->get();
+                return response()->json(['type' => 'Servicios por día', 'data' => $day]);
+            case "month":
+                $dateMonth = Carbon::createFromDate($request->date)->month;
+                $dateYear = Carbon::createFromDate($request->date)->year;
+                $month = Bitacora::select(
+                    DB::raw("DATE_FORMAT(created_at,'%m') AS mes"),
+                    DB::raw("COUNT(*) AS total"),
+                    DB::raw("tip_servicio")
+                )
+                    ->with('servicio:id,emergencia')
+                    ->groupBy('tip_servicio')
+                    ->whereMonth('created_at', $dateMonth)
+                    ->whereYear('created_at', $dateYear)
+                    ->get();
+                return response()->json(['type' => 'Servicios por mes', 'data' => $month]);
+            case "twoMonth":
+                $twoMonthDate = Carbon::createFromDate($request->date)->addMonth(2);
+                $twoMonth = Bitacora::select(
+                    DB::raw("DATE_FORMAT(created_at,'%m') AS mes"),
+                    DB::raw("COUNT(*) AS total"),
+                    DB::raw("tip_servicio")
+                )
+                    ->with('servicio:id,emergencia')
+                    ->groupBy('tip_servicio')
+                    //->whereDate('created_at', $request->date)
+                    ->whereBetween('created_at', [$request->date, $twoMonthDate])
+                    ->get();
+                return response()->json(['type' => 'Servicios por bimestre', 'data' => $twoMonth]);
+            case "year":
+                $year = Bitacora::select(
+                    DB::raw("DATE_FORMAT(created_at,'%Y') AS year"),
+                    DB::raw("COUNT(*) AS total"),
+                    DB::raw("tip_servicio")
+                )
+                    ->with('servicio:id,emergencia')
+                    ->groupBy('tip_servicio')
+                    ->whereYear('created_at', $request->date)
+                    ->get();
+                return response()->json(['type' => 'Servicios por año', 'data' => $year]);
+        }
     }
 
     public function registerDay($sub_id, $date_1, $date_2)
@@ -157,10 +180,5 @@ class GraphController extends Controller
             ])
             ->get();
         return $year;
-    }
-
-    public function test() {
-        $users = User::all();
-
     }
 }

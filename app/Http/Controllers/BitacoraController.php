@@ -35,7 +35,8 @@ class BitacoraController extends Controller
                 'folio_frap'            =>   ['required'],
                 'folio_c4'              =>   ['required'],
                 'tel_reporte'           =>   ['required'],
-                'situacion_traslado'    =>   ['required']
+                'situacion_traslado'    =>   ['required'],
+                'delegacion'    =>   ['required']
             ]);
 
             $bitacora = new Bitacora();
@@ -44,6 +45,7 @@ class BitacoraController extends Controller
             $bitacora->hora_llegada         =  $request->hora_llegada;
             $bitacora->num_ambulancia       =  $request->num_ambulancia;
             $bitacora->tip_servicio         =  $request->tip_servicio;
+            $bitacora->fallecido            =  $request->fallecido;
             $bitacora->nombre_paciente      =  $request->nombre_paciente;
             $bitacora->apellidos_paciente   =  $request->apellidos_paciente;
             $bitacora->edad_paciente        =  $request->edad_paciente;
@@ -62,6 +64,7 @@ class BitacoraController extends Controller
             $bitacora->tel_reporte          =  $request->tel_reporte;
             $bitacora->situacion_traslado   =  $request->situacion_traslado;
             $bitacora->veces_atendido       =  1;
+            $bitacora->delegacion           =  $request->delegacion;
             $bitacora->save();
 
             if (is_null($bitacora)) {

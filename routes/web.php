@@ -32,19 +32,8 @@ Route::prefix('users')->group(function () {
 });
 
 Route::prefix('graph')->group(function () {
-    Route::get('/day', 'GraphController@day')->name('day');
-    Route::get('/month', 'GraphController@month')->name('month');
-    Route::get('/year', 'GraphController@year')->name('year');
-    Route::get('/all', 'GraphController@all')->name('all');
-    Route::get('/registerDay/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDay');
-    Route::get('/registerDayDeced/{sub_id}/{date_1}/{date_2}', 'GraphController@registerDayDeced');
-    Route::get('/registerMonth/{sub_id}', 'GraphController@registerMonth');
-    Route::get('/registerMonthDeced/{sub_id}', 'GraphController@registerMonthDeced');
-    Route::get('/registerYear/{sub_id}', 'GraphController@registerYear');
-    Route::get('/registerYearDeced/{sub_id}', 'GraphController@registerYearDeced');
-    Route::get('/registerAll/{data}', 'GraphController@registerAll');
-    Route::get('/registerAllDead/{data}', 'GraphController@registerAllDead');
-    Route::get('/test', 'GraphController@test');
+    Route::get('/concentrated', 'GraphController@viewconcentrated')->name('concentrated');
+    Route::get('/tipServicio', 'GraphController@tipServicio');
 });
 
 Route::prefix('bitacora')->group(function () {

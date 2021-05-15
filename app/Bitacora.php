@@ -20,6 +20,7 @@ class Bitacora extends Model
         'hora_llegada',
         'num_ambulancia',
         'tip_servicio',
+        'fallecido',
         'nombre_paciente',
         'apellidos_paciente',
         'edad_paciente',
@@ -37,6 +38,18 @@ class Bitacora extends Model
         'folio_c4',
         'tel_reporte',
         'situacion_traslado',
-        'veces_atendido'
+        'veces_atendido',
+        'delegacion'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subdelegacion() {
+        return $this->belongsTo(Delegacion::class, 'delegacion', 'id');
+    }
+  
+    public function servicio() {
+        return $this->belongsTo(ClaveServicio::class, 'tip_servicio', 'id');
+    }
 }

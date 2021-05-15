@@ -19,7 +19,8 @@ class CreateBitacoraTable extends Migration
             $table->time('hora_salida');
             $table->time('hora_llegada');
             $table->string('num_ambulancia');
-            $table->string('tip_servicio');
+            $table->unsignedBigInteger('tip_servicio');
+            $table->string('fallecido')->nullable();
             //Paciente
             $table->string('nombre_paciente')->nullable();
             $table->string('apellidos_paciente')->nullable();
@@ -41,7 +42,11 @@ class CreateBitacoraTable extends Migration
             $table->string('tel_reporte');
             $table->string('situacion_traslado');
             $table->integer('veces_atendido');
+            $table->unsignedBigInteger('delegacion');
             $table->timestamps();
+
+            $table->foreign('tip_servicio')->references('id')->on('clave_servicio');
+            $table->foreign('delegacion')->references('id')->on('delegaciones');
         });
     }
 

@@ -66,7 +66,7 @@
                         <label>Tipo de servicio</label>
                         <select class="form-control" name="tip_servicio">
                             @foreach(\App\ClaveServicio::all() as $item)
-                            <option value="{{$item->code}}" selected>{{$item->emergencia}}</option>
+                            <option value="{{$item->id}}" selected>{{$item->code}}</option>
                             @endforeach
                         </select>
 
@@ -77,10 +77,31 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label>Sub delegación</label>
+                        <select class="form-control" name="delegacion">
+                            @foreach(\App\Delegacion::all() as $item)
+                                <option value="{{$item->id}}" selected>{{$item->nombre}}</option>
+                            @endforeach
+                        </select>
+
+                        @error('delegacion')
+                        <span class="invalid-feedback text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                        @enderror
+                    </div>
+
                     {{--Paciente--}}
+
+                    <div class="form-group">
+                        <label>¿El paciente fallecio?</label>
+                        <input type="checkbox" name="fallecido" class="check_input">
+                    </div>
+
                     <div class="form-group">
                         <label>¿Registrar datos del paciente?</label>
-                        <input type="checkbox" id="check_paciente">
+                        <input type="checkbox" id="check_paciente" class="check_input">
                     </div>
 
                     <div class="d-none" id="cont-form-paciente">
@@ -140,7 +161,7 @@
                     {{--Si se requiere traslado activar esta sección--}}
                     <div class="form-group">
                         <label>¿Se requiere traslado?</label>
-                        <input type="checkbox" id="check_traslado">
+                        <input type="checkbox" id="check_traslado" class="check_input">
                     </div>
 
                     <div class="d-none" id="cont-form-traslado">
