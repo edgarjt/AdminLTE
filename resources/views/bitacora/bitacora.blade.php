@@ -94,7 +94,7 @@
                         <div class="modal-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Nombre del operador: <strong>{{$bitacora->nombre_operador}}</strong></li>
-                                <li class="list-group-item">Nombre del paramedico: <strong>{{$bitacora->nombre_paciente}}</strong></li>
+                                <li class="list-group-item">Nombre del paramedico: <strong>{{$bitacora->nombre_paramedico}}</strong></li>
                                 <li class="list-group-item">Dirección del servicio: <strong>{{$bitacora->dir_servicio}}</strong></li>
                                 <li class="list-group-item">Kilómetro de salida de la base: <strong>{{$bitacora->km_salida_base}}</strong></li>
                                 <li class="list-group-item">Kilómetro de llegada a la base: <strong>{{$bitacora->km_llegada_base}}</strong></li>

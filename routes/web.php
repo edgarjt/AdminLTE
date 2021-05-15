@@ -33,7 +33,7 @@ Route::prefix('users')->group(function () {
 
 Route::prefix('graph')->group(function () {
     Route::get('/concentrated', 'GraphController@viewconcentrated')->name('concentrated');
-    Route::get('/tipServicio', 'GraphController@tipServicio')->name('tipServicio');
+    Route::get('/tipServicio', 'GraphController@tipServicio');
 });
 
 Route::prefix('bitacora')->group(function () {

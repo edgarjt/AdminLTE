@@ -1,34 +1,70 @@
-$('#graphYear').click(function () {
-    var subdelegacion = $('#select-year').val();
+$('#action').change(function (e){
+    var action = $('#action').val();
+    if (action === 'day') {
+        $('#dateOne').removeClass('d-none');
+        $('#year').addClass('d-none');
 
-    $('.load').removeClass('d-none')
+    }else if (action === 'month') {
+        $('#dateOne').removeClass('d-none');
+        $('#year').addClass('d-none');
+
+    }else if (action === 'twoMonth') {
+        $('#dateOne').removeClass('d-none');
+        $('#year').addClass('d-none');
+
+    }else if (action === 'year') {
+        $('#dateOne').addClass('d-none');
+        $('#year').removeClass('d-none');
+    }
+});
+
+$('#graph').click(function () {
+    var dateOne = $('#dateOne').val();
+    var dateYear = $('#year').val();
+    var service = $('#service').val();
+    var action = $('#action').val();
+    var data;
+
+    if (action === 'day' || action === 'month' || action === 'twoMonth') {
+        data = {
+            'action': action,
+            'date': dateOne
+        }
+    }else if (action === 'year') {
+        data = {
+            'action': action,
+            'date': dateYear
+        }
+    }
+
+    console.log(data);
+
     $.ajax({
         contentType:'aplication/json',
         dataType: 'json',
         type: 'GET',
-        url:linkData+'registerYear/'+subdelegacion,
+        url:linkData+'graph/tipServicio',
+        data: data,
         success: function (result){
+            console.log(result.type);
             var label = [];
             var data = [];
-            var labelInfo = '# Emergencias';
-            var type = $('#type-graph').val();
-            $.each(result, function (i, item){
-                label.push(item['Year']);
-                data.push(item['Total']);
+            var labelInfo = '#' + result.type;
+
+            var className = 'graph-emergencias';
+            $.each(result.data, function (i, item){
+                label.push(item['servicio']['emergencia']);
+                data.push(item['total']);
             });
 
-            if (label) {
-                $('.load').addClass('d-none');
-            }
-
-            $('#registros-emergencias').html('<canvas class="graph-emergencias"></canvas>');
-            graphEmergencias(label, data, labelInfo, type);
+            $('.graphDay').html('<canvas class="graph-emergencias"></canvas>');
+            graph(label, data, labelInfo || 'No se encontro resultados', 'bar', className);
         }
     })
 });
 
-function graphEmergencias(label, data, labelInfo, type) {
-    var ctx = document.getElementsByClassName('graph-emergencias');
+function graph(label, data, labelInfo, type, className) {
+    var ctx = document.getElementsByClassName(className);
 
     var myChart = new Chart(ctx, {
         type: type,

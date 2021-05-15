@@ -66,7 +66,7 @@
                         <label>Tipo de servicio</label>
                         <select class="form-control" name="tip_servicio">
                             @foreach(\App\ClaveServicio::all() as $item)
-                            <option value="{{$item->id}}" selected>{{$item->emergencia}}</option>
+                            <option value="{{$item->id}}" selected>{{$item->code}}</option>
                             @endforeach
                         </select>
 
