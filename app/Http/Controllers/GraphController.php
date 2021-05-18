@@ -3,32 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Bitacora;
-use App\User;
+use App\Exports\graphExports;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GraphController extends Controller
 {
 
     public function viewconcentrated() {
         return view('graph.graficaConcentrado');
-    }
-
-    public function registerAll($data) {
-
-        $register = Paciente::select(
-            DB::raw("DATE_FORMAT(created_at,'%m %Y') AS Mes"),
-            DB::raw("COUNT(*) AS Total")
-        )
-            ->groupBy('Mes')
-            ->orderBy('Mes', 'ASC')
-            ->where([
-                ['created_at', 'like', $data.'%'],
-                ['pac_estado', '=', 0]
-            ])
-            ->get();
-        return $register;
     }
 
 /*$q->whereDay('created_at', '=', date('d'));
@@ -39,7 +24,7 @@ $q->whereYear('created_at', '=', date('Y'));*/
         switch ($request->action) {
             case "day":
                 $day = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%d') AS dia"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS dia"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -47,12 +32,17 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     ->groupBy('tip_servicio')
                     ->whereDate('created_at', $request->date)
                     ->get();
+
+                if ($request->report == "1") {
+                    return $this->concentrated($day);
+                }
                 return response()->json(['type' => 'Servicios por día', 'data' => $day]);
+
             case "month":
                 $dateMonth = Carbon::createFromDate($request->date)->month;
                 $dateYear = Carbon::createFromDate($request->date)->year;
                 $month = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%m') AS mes"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS mes"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -61,11 +51,15 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     ->whereMonth('created_at', $dateMonth)
                     ->whereYear('created_at', $dateYear)
                     ->get();
+                if ($request->report == "1") {
+                    return $this->concentrated($month);
+                }
                 return response()->json(['type' => 'Servicios por mes', 'data' => $month]);
+
             case "twoMonth":
                 $twoMonthDate = Carbon::createFromDate($request->date)->addMonth(2);
                 $twoMonth = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%m') AS mes"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS mes"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -74,10 +68,14 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     //->whereDate('created_at', $request->date)
                     ->whereBetween('created_at', [$request->date, $twoMonthDate])
                     ->get();
+                if ($request->report == "1") {
+                    return $this->concentrated($twoMonth);
+                }
                 return response()->json(['type' => 'Servicios por bimestre', 'data' => $twoMonth]);
+
             case "year":
                 $year = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%Y') AS year"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS year"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -85,6 +83,11 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     ->groupBy('tip_servicio')
                     ->whereYear('created_at', $request->date)
                     ->get();
+
+                if ($request->report == "1") {
+                    return $this->concentrated($year);
+                }
+
                 return response()->json(['type' => 'Servicios por año', 'data' => $year]);
         }
     }
@@ -94,7 +97,7 @@ $q->whereYear('created_at', '=', date('Y'));*/
         switch ($request->action) {
             case "day":
                 $day = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%d') AS dia"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS dia"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -103,12 +106,17 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     ->where('delegacion', $request->delegacion)
                     ->whereDate('created_at', $request->date)
                     ->get();
+
+                if ($request->report == "1") {
+                    return $this->concentrated($day);
+                }
                 return response()->json(['type' => 'Servicios por día', 'data' => $day]);
+
             case "month":
                 $dateMonth = Carbon::createFromDate($request->date)->month;
                 $dateYear = Carbon::createFromDate($request->date)->year;
                 $month = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%m') AS mes"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS mes"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -118,11 +126,17 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     ->whereMonth('created_at', $dateMonth)
                     ->whereYear('created_at', $dateYear)
                     ->get();
+
+                if ($request->report == "1") {
+                    return $this->concentrated($month);
+                }
+
                 return response()->json(['type' => 'Servicios por mes', 'data' => $month]);
+
             case "twoMonth":
                 $twoMonthDate = Carbon::createFromDate($request->date)->addMonth(2);
                 $twoMonth = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%m') AS mes"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS mes"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -132,10 +146,16 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     //->whereDate('created_at', $request->date)
                     ->whereBetween('created_at', [$request->date, $twoMonthDate])
                     ->get();
+
+                if ($request->report == "1") {
+                    return $this->concentrated($twoMonth);
+                }
+
                 return response()->json(['type' => 'Servicios por bimestre', 'data' => $twoMonth]);
+
             case "year":
                 $year = Bitacora::select(
-                    DB::raw("DATE_FORMAT(created_at,'%Y') AS year"),
+                    DB::raw("DATE_FORMAT(created_at,'%d-%m-%y') AS year"),
                     DB::raw("COUNT(*) AS total"),
                     DB::raw("tip_servicio")
                 )
@@ -144,7 +164,18 @@ $q->whereYear('created_at', '=', date('Y'));*/
                     ->where('delegacion', $request->delegacion)
                     ->whereYear('created_at', $request->date)
                     ->get();
+
+                if ($request->report == "1") {
+                    return $this->concentrated($year);
+                }
+
                 return response()->json(['type' => 'Servicios por año', 'data' => $year]);
         }
+    }
+
+    public function concentrated($data) {
+        $reports = Excel::download(new graphExports($data), 'graphExports.xls');
+        return $reports;
+
     }
 }

@@ -35,6 +35,7 @@
             <input type="number" class="input-graph d-none" id="year"   placeholder="Digite el año">
 
             <button class="btn btn-danger btn-sm" id="graph">Gráficar</button>
+            <button class="btn btn-primary btn-sm" id="download-graph">Concentrado</button>
         </div>
 
         <div class="graphDay"></div>

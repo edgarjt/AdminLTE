@@ -123,6 +123,7 @@
 <script src="{{asset('DataTables/datatables.min.js')}}"></script>
 <script src="{{asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('js/FileSaver.min.js')}}"></script>
 <script src="{{asset('js/Chart.min.js')}}"></script>
 <script src="{{asset('js/global.js')}}"></script>
 <script src="{{asset('js/graficas.js')}}"></script>

@@ -28,6 +28,37 @@ $('#service').change(function (e) {
     }
 });
 
+$('#download-graph').click(function () {
+    var dateOne = $('#dateOne').val();
+    var dateYear = $('#year').val();
+    var service = $('#service').val();
+    var action = $('#action').val();
+    var delegacion = $('#delegacion').val();
+    var link;
+    var method;
+
+    if (service === '1') {
+        method = 'tipServicio';
+        if (action === 'day' || action === 'month' || action === 'twoMonth') {
+            link = linkData + 'graph/' + method + '?report=1&action=' + action + '&date=' + dateOne;
+
+        }else if (action === 'year') {
+            link = linkData + 'graph/' + method + '?report=1&action=' + action + '&date=' + dateYear;
+        }
+    }else {
+        method = 'tipServicioDelegacion';
+        if (action === 'day' || action === 'month' || action === 'twoMonth') {
+            link = linkData + 'graph/' + method + '?report=1&action=' + action + '&date=' + dateOne + '&delegacion=' + delegacion;
+
+        }else if (action === 'year') {
+            link = linkData + 'graph/' + method + '?report=1&action=' + action + '&date=' + dateYear + '&delegacion=' + delegacion;
+
+        }
+    }
+    console.log(link);
+    window.location= link;
+});
+
 $('#graph').click(function () {
     var dateOne = $('#dateOne').val();
     var dateYear = $('#year').val();
@@ -67,7 +98,6 @@ $('#graph').click(function () {
         }
     }
 
-    console.log(data);
 
     $.ajax({
         contentType:'aplication/json',
@@ -88,9 +118,26 @@ $('#graph').click(function () {
 
             $('.graphDay').html('<canvas class="graph-emergencias"></canvas>');
             graph(label, data, labelInfo || 'No se encontro resultados', 'bar', className);
+        },
+        error: function (er) {
+            console.log(er);
         }
     })
 });
+
+function convertImage(dataurl, filename) {
+    let arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, {type: mime});
+}
 
 function graph(label, data, labelInfo, type, className) {
     var ctx = document.getElementsByClassName(className);
