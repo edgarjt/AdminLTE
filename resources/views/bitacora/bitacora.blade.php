@@ -13,6 +13,13 @@
                     <i class="fa fa-plus"></i>
                 </a>
             </li>
+
+            <li>
+                <a href="{{route('contrated')}}" class="btn btn-primary btn-sm" style="color: white">
+                    Concentrado
+                    <i class="fa fa-file-excel-o"></i>
+                </a>
+            </li>
         </ol>
     </section>
 

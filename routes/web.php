@@ -43,4 +43,5 @@ Route::prefix('bitacora')->group(function () {
     Route::post('/addRecords', 'BitacoraController@addRecords')->name('addRecords');
     Route::get('/searchRecords', 'BitacoraController@searchRecords')->name('searchRecords');
     Route::delete('/deleteRecords', 'BitacoraController@deleteRecords')->name('deleteRecords');
+    Route::get('/contrated', 'BitacoraController@contrated')->name('contrated');
 });

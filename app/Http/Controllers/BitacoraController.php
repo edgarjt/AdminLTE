@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Bitacora;
+use App\Exports\BitacoraExports;
 use Illuminate\Http\Request;
-use mysql_xdevapi\Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BitacoraController extends Controller
 {
@@ -16,6 +17,12 @@ class BitacoraController extends Controller
 
     public function formRecords() {
         return view('bitacora.add');
+    }
+
+    public function contrated() {
+        $reports = Excel::download(new BitacoraExports, 'test.xls');
+        return $reports;
+
     }
 
     public function addRecords(Request $request) {
