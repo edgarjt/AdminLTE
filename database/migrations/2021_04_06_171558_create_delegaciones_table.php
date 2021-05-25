@@ -14,10 +14,10 @@ class CreateDelegacionesTable extends Migration
     public function up()
     {
         Schema::create('delegaciones', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->string('calle');
+            $table->id('del_id');
+            $table->string('del_nombre');
+            $table->string('del_descripcion');
+            $table->string('del_calle');
             $table->timestamps();
         });
     }

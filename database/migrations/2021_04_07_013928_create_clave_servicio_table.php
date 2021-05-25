@@ -14,9 +14,9 @@ class CreateClaveServicioTable extends Migration
     public function up()
     {
         Schema::create('clave_servicio', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
-            $table->string('emergencia');
+            $table->id('cla_id');
+            $table->string('cla_code');
+            $table->string('cla_emergencia');
             $table->timestamps();
         });
     }

@@ -14,39 +14,35 @@ class CreateBitacoraTable extends Migration
     public function up()
     {
         Schema::create('bitacora', function (Blueprint $table) {
-            $table->id();
-            $table->time('hora_llamada');
-            $table->time('hora_salida');
-            $table->time('hora_llegada');
-            $table->string('num_ambulancia');
-            $table->unsignedBigInteger('tip_servicio');
-            $table->string('fallecido')->nullable();
-            //Paciente
-            $table->string('nombre_paciente')->nullable();
-            $table->string('apellidos_paciente')->nullable();
-            $table->string('edad_paciente')->nullable();
-            $table->string('sexo_paciente')->nullable();
+            $table->id('bit_id');
+            $table->time('bit_hora_llamada');
+            $table->time('bit_hora_salida');
+            $table->time('bit_hora_llegada');
+            $table->string('bit_num_ambulancia');
             //Si se requiere traslado
-            $table->time('hora_traslado')->nullable();
-            $table->string('hospital_traslado')->nullable();
-            $table->time('llegada_hospital')->nullable();
-            $table->time('llegada_base')->nullable();
+            $table->time('bit_hora_traslado')->nullable();
+            $table->time('bit_llegada_hospital')->nullable();
+            $table->time('bit_llegada_base')->nullable();
             //Detalles
-            $table->string('nombre_operador');
-            $table->string('nombre_paramedico');
-            $table->string('dir_servicio');
-            $table->string('km_salida_base');
-            $table->string('km_llegada_base');
-            $table->string('folio_frap');
-            $table->string('folio_c4');
-            $table->string('tel_reporte');
-            $table->string('situacion_traslado');
-            $table->integer('veces_atendido');
-            $table->unsignedBigInteger('delegacion');
+            $table->string('bit_nombre_operador');
+            $table->string('bit_nombre_paramedico');
+            $table->string('bit_dir_servicio');
+            $table->integer('bit_km_salida_base');
+            $table->integer('bit_km_llegada_base');
+            $table->string('bit_folio_frap');
+            $table->string('bit_folio_c4');
+            $table->integer('bit_tel_reporte');
+            $table->string('bit_situacion_traslado');
+            $table->integer('bit_veces_atendido');
+            $table->unsignedBigInteger('tip_servicio_fk_id');
+            $table->unsignedBigInteger('delegacion_fk_id');
+            $table->unsignedBigInteger('pac_fk_id');
+
             $table->timestamps();
 
-            $table->foreign('tip_servicio')->references('id')->on('clave_servicio');
-            $table->foreign('delegacion')->references('id')->on('delegaciones');
+            $table->foreign('tip_servicio_fk_id')->references('cla_id')->on('clave_servicio');
+            $table->foreign('delegacion_fk_id')->references('del_id')->on('delegaciones');
+            $table->foreign('pac_fk_id')->references('pac_id')->on('pacientes');
         });
     }
 
