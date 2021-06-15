@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('paciente')->group(function () {
+    Route::post('/addPaciente', 'PacienteController@addPaciente');
+    Route::get('/tipServicio', 'GraphController@tipServicio');
+    Route::get('/tipServicioDelegacion', 'GraphController@tipServicioDelegacion');
+});
+
+Route::prefix('bitacora')->group(function () {
+    Route::post('/addRecords', 'BitacoraController@addRecords');
+});
+

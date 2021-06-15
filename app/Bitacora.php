@@ -52,4 +52,8 @@ class Bitacora extends Model
     public function servicio() {
         return $this->belongsTo(ClaveServicio::class, 'tip_servicio_fk_id', 'cla_id');
     }
+
+    public function paciente() {
+        return $this->belongsTo(ClaveServicio::class, 'pac_fk_id', 'cla_id');
+    }
 }

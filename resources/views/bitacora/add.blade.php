@@ -3,7 +3,7 @@
     <section class="content-header" style="margin-bottom: 15px">
         <h1>
             Agregar:
-            <small>Usuario</small>
+            <small>Bitacora</small>
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -12,7 +12,7 @@
         </ol>
     </section>
 
-    <section class="content bg-white">
+    {{--<section class="content bg-white">
         <div class="row">
             <div class="col-md-6">
                 <form method="post" action="{{route('addRecords')}}">
@@ -92,7 +92,7 @@
                         @enderror
                     </div>
 
-                    {{--Paciente--}}
+                    --}}{{--Paciente--}}{{--
 
                     <div class="form-group">
                         <label>¿El paciente fallecio?</label>
@@ -158,7 +158,7 @@
                     </div>
 
 
-                    {{--Si se requiere traslado activar esta sección--}}
+                    --}}{{--Si se requiere traslado activar esta sección--}}{{--
                     <div class="form-group">
                         <label>¿Se requiere traslado?</label>
                         <input type="checkbox" id="check_traslado" class="check_input">
@@ -212,7 +212,7 @@
 
                     </div>
 
-                    {{--Detalles--}}
+                    --}}{{--Detalles--}}{{--
 
                     <div class="form-group">
                         <label>Nombre y apellidos del operador</label>
@@ -319,6 +319,184 @@
                 </form>
             </div>
         </div>
+    </section>--}}
+
+    <section class="content bg-white mb-4">
+        <h4>Paciente
+            <img class="" id="not-register_pac" src="{{asset('img/cancelar.png')}}" alt="not-logo" width="30">
+            <img class="d-none" id="register_pac" src="{{asset('img/comprobado.png')}}" alt="not-logo" width="30">
+        </h4>
+        <h5 id="warnig-pac"></h5>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre(s)</label>
+                    <input type="text" class="form-control" id="pac_nombre">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Apellidos</label>
+                    <input type="text" class="form-control" id="pac_apellidos">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Edad</label>
+                    <input type="text" class="form-control" id="pac_edad">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputState">Sexo</label>
+                    <select id="inputState" class="form-control pac_sexo">
+                        <option selected>Mujer</option>
+                        <option>Hombre</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <input class="form-check-input" type="checkbox" id="fallecidoCheck">
+                    <label class="form-check-label" for="fallecidoCheck">
+                        Fallecido
+                    </label>
+                </div>
+                <div class="form-group col-md-12">
+                    <input class="form-check-input" type="checkbox" id="trasladoCheck">
+                    <label class="form-check-label" for="trasladoCheck">
+                        Se requiere traslado
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="addPaciente">Guardar y continuar</button>
+    </section>
+
+    <section class="content bg-white mb-4 d-none" id="cont-form-traslado">
+        <h4>Traslado
+            <img class="" id="not-register_tras" src="{{asset('img/cancelar.png')}}" alt="not-logo" width="30">
+            <img class="d-none" id="register_tras" src="{{asset('img/comprobado.png')}}" alt="not-logo" width="30">
+        </h4>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label>Hora de la llamada</label>
+                    <input type="time" class="form-control" id="bit_hora_llamada">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Hora de salida</label>
+                    <input type="time" class="form-control" id="bit_hora_salida">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Hora de llegada</label>
+                    <input type="time" class="form-control" id="bit_hora_llegada">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Hospital de traslado</label>
+                    <select id="inputState" class="form-control hos_fk_id">
+                        @foreach(\App\Hospital::all() as $item)
+                            <option value="{{$item->hos_id}}">{{$item->hos_nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label>Numero de ambulancia</label>
+                    <input type="number" class="form-control" id="bit_num_ambulancia">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="inputState">Hora de traslado</label>
+                    <input type="time" class="form-control" id="bit_hora_traslado">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Hora de llegada al hospital</label>
+                    <input type="time" class="form-control" id="bit_llegada_hospital">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="inputState">Hora de llegada a la base</label>
+                    <input type="time" class="form-control" id="bit_llegada_base">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="addTraslado" disabled>Guardar y continuar</button>
+    </section>
+
+    <section class="content bg-white mb-4">
+        <h4>Operador y detalles
+            <img class="" id="not-register_ope" src="{{asset('img/cancelar.png')}}" alt="not-logo" width="30">
+            <img class="d-none" id="register_ope" src="{{asset('img/comprobado.png')}}" alt="not-logo" width="30">
+        </h4>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Nombre del operador</label>
+                    <input type="text" class="form-control" id="bit_nombre_operador">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Nombre del paramedico</label>
+                    <input type="text" class="form-control" id="bit_nombre_paramedico">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Dirección de servicio</label>
+                    <input type="text" class="form-control" id="bit_dir_servicio">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Kilometro de salida de la base</label>
+                    <input type="text" class="form-control" id="bit_km_salida_base">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Kilometro de llegada a la base</label>
+                    <input type="text" class="form-control" id="bit_km_llegada_base">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label>Folio frap</label>
+                    <input type="text" class="form-control" id="bit_folio_frap">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Folio C4</label>
+                    <input type="text" class="form-control" id="bit_folio_c4">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Teléfono de reporte</label>
+                    <input type="text" class="form-control" id="bit_tel_reporte">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Tipo de servicio</label>
+                    <select id="inputState" class="form-control tip_servicio_fk_id">
+                        @foreach(\App\ClaveServicio::all() as $item)
+                        <option value="{{$item->cla_id}}">{{$item->cla_code}} - {{$item->cla_emergencia}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Delegación</label>
+                    <select id="inputState" class="form-control delegacion_fk_id">
+                        @foreach(\App\Delegacion::all() as $item)
+                        <option value="{{$item->del_id}}">{{$item->del_nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Situación de traslado</label>
+                    <textarea class="form-control" id="bit_situacion_traslado"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="addOperador" disabled>Guardar</button>
     </section>
 
 @endsection

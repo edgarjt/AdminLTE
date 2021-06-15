@@ -36,7 +36,7 @@ class CreateBitacoraTable extends Migration
             $table->integer('bit_veces_atendido');
             $table->unsignedBigInteger('tip_servicio_fk_id');
             $table->unsignedBigInteger('delegacion_fk_id');
-            $table->unsignedBigInteger('pac_fk_id');
+            $table->unsignedBigInteger('pac_fk_id')->nullable();
 
             $table->timestamps();
 
