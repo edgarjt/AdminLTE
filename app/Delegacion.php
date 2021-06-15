@@ -11,8 +11,10 @@ class Delegacion extends Model
      */
     protected $table = 'delegaciones';
 
+    protected $primaryKey = 'del_id';
+
     /**
      * @var string[]
      */
-    protected $fillable = ['nombre', 'descripcion', 'calle'];
+    protected $fillable = ['del_nombre', 'del_descripcion', 'del_calle'];
 }

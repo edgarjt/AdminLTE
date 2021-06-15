@@ -12,44 +12,48 @@ class Bitacora extends Model
     protected $table = 'bitacora';
 
     /**
+     * @var string
+     */
+    protected $primaryKey = 'bit_id';
+
+    /**
      * @var string[]
      */
     protected $fillable = [
-        'hora_llamada',
-        'hora_salida',
-        'hora_llegada',
-        'num_ambulancia',
-        'tip_servicio',
-        'fallecido',
-        'nombre_paciente',
-        'apellidos_paciente',
-        'edad_paciente',
-        'sexo_paciente',
-        'hora_traslado',
-        'hospital_traslado',
-        'llegada_hospital',
-        'llegada_base',
-        'nombre_operador',
-        'nombre_paramedico',
-        'dir_servicio',
-        'km_salida_base',
-        'km_llegada_base',
-        'folio_frap',
-        'folio_c4',
-        'tel_reporte',
-        'situacion_traslado',
-        'veces_atendido',
-        'delegacion'
+        'bit_hora_llamada',
+        'bit_hora_salida',
+        'bit_hora_llegada',
+        'bit_num_ambulancia',
+        'bit_hora_traslado',
+        'bit_llegada_hospital',
+        'bit_llegada_base',
+        'bit_nombre_operador',
+        'bit_nombre_paramedico',
+        'bit_dir_servicio',
+        'bit_km_salida_base',
+        'bit_km_llegada_base',
+        'bit_folio_frap',
+        'bit_folio_c4',
+        'bit_tel_reporte',
+        'bit_situacion_traslado',
+        'bit_veces_atendido',
+        'tip_servicio_fk_id',
+        'delegacion_fk_id',
+        'pac_fk_id',
     ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function subdelegacion() {
-        return $this->belongsTo(Delegacion::class, 'delegacion', 'id');
+        return $this->belongsTo(Delegacion::class, 'delegacion_fk_id', 'del_id');
     }
-  
+
     public function servicio() {
-        return $this->belongsTo(ClaveServicio::class, 'tip_servicio', 'id');
+        return $this->belongsTo(ClaveServicio::class, 'tip_servicio_fk_id', 'cla_id');
+    }
+
+    public function paciente() {
+        return $this->belongsTo(ClaveServicio::class, 'pac_fk_id', 'cla_id');
     }
 }

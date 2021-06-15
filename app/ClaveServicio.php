@@ -12,7 +12,12 @@ class ClaveServicio extends Model
     protected $table = 'clave_servicio';
 
     /**
+     * @var string
+     */
+    protected $primaryKey = 'cla_id';
+
+    /**
      * @var string[]
      */
-    protected $fillable = ['code', 'emergencia'];
+    protected $fillable = ['cla_code', 'cla_emergencia'];
 }

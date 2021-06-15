@@ -13,13 +13,13 @@ class DelegacionesSeeder extends Seeder
     public function run()
     {
         $data = array(
-            ['nombre' => 'CrzR-CARDENAS', 'descripcion'         => 'Atencion cruz roja', 'calle' => '1ro de Mato'],
-            ['nombre' => 'CrzR-EMILIANOZAPATA', 'descripcion'   => 'Atencion cruz roja', 'calle' => 'Tierra y Libertad'],
-            ['nombre' => 'CrzR-COMALCALCO', 'descripcion'       => 'Atencion cruz roja', 'calle' => 'Boulevard Adolfo López Mateos 217'],
-            ['nombre' => 'CrzR-JALPADEMÉNDEZ', 'descripcion'    => 'Atencion cruz roja', 'calle' => 'Sin nombre'],
-            ['nombre' => 'CrzR-TEAPA', 'descripcion'            => 'Atencion cruz roja', 'calle' => 'Agave'],
-            ['nombre' => 'CrzR-TENOSIQUE', 'descripcion'        => 'Atencion cruz roja', 'calle' => 'Alejandro Rovirosa Wade 70'],
-            ['nombre' => 'CrzR-VILLAHERMOSA', 'descripcion'     => 'Atencion cruz roja', 'calle' => 'Av. Paseo Tabasco']
+            ['del_nombre' => 'CrzR-CARDENAS', 'del_descripcion'         => 'Atencion cruz roja', 'del_calle' => '1ro de Mato'],
+            ['del_nombre' => 'CrzR-EMILIANOZAPATA', 'del_descripcion'   => 'Atencion cruz roja', 'del_calle' => 'Tierra y Libertad'],
+            ['del_nombre' => 'CrzR-COMALCALCO', 'del_descripcion'       => 'Atencion cruz roja', 'del_calle' => 'Boulevard Adolfo López Mateos 217'],
+            ['del_nombre' => 'CrzR-JALPADEMÉNDEZ', 'del_descripcion'    => 'Atencion cruz roja', 'del_calle' => 'Sin nombre'],
+            ['del_nombre' => 'CrzR-TEAPA', 'del_descripcion'            => 'Atencion cruz roja', 'del_calle' => 'Agave'],
+            ['del_nombre' => 'CrzR-TENOSIQUE', 'del_descripcion'        => 'Atencion cruz roja', 'del_calle' => 'Alejandro Rovirosa Wade 70'],
+            ['del_nombre' => 'CrzR-VILLAHERMOSA', 'del_descripcion'     => 'Atencion cruz roja', 'del_calle' => 'Av. Paseo Tabasco']
         );
 
         $table = DB::table('delegaciones');

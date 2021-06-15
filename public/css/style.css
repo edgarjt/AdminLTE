@@ -62,3 +62,6 @@ label[for="avatar"] {
 .input-graph {
     width: 180px;
 }
+.mb-4 {
+    margin-bottom: 20px !important;
+}

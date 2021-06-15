@@ -46,19 +46,6 @@
             @foreach(\App\Bitacora::with('subdelegacion')->with('servicio')->get() as $bitacora)
             <tr>
                 <td>{{$bitacora->hora_llamada}}</td>
-                <td>{{$bitacora->hora_salida}}</td>
-                <td>{{$bitacora->hora_llegada}}</td>
-                <td>{{$bitacora->num_ambulancia}}</td>
-                <td>{{$bitacora->servicio->emergencia}}</td>
-                <td>{{$bitacora->subdelegacion->nombre}}</td>
-
-                @if(is_null($bitacora->nombre_paciente) || is_null($bitacora->apellidos_paciente))
-                <td><a href="#" data-toggle="modal" data-target="#detailPacient{{$bitacora->id}}">Sin datos</a></td>
-                @else
-                    <td><a href="#" data-toggle="modal" data-target="#detailPacient{{$bitacora->id}}">{{$bitacora->nombre_paciente}} {{$bitacora->apellidos_paciente}}</a></td>
-                @endif
-                <td><a href="#" data-toggle="modal" data-target="#detail{{$bitacora->id}}">ver más</a></td>
-                <td><a href="#" class="delete_bitacora" data-id="{{$bitacora->id}}">Borrar</a></td>
             </tr>
             <!-- Modal detail paciente-->
             <div class="modal fade" id="detailPacient{{$bitacora->id}}" tabindex="-1" aria-hidden="true">

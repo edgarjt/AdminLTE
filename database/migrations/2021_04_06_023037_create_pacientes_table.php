@@ -20,7 +20,7 @@ class CreatePacientesTable extends Migration
             $table->integer('pac_edad')->nullable();
             $table->string('pac_sexo');
             $table->string('pac_fallecido')->nullable();
-            $table->unsignedBigInteger('hos_fk_id');
+            $table->unsignedBigInteger('hos_fk_id')->nullable();
             $table->timestamps();
             $table->foreign('hos_fk_id')->references('hos_id')->on('hospitales');
         });

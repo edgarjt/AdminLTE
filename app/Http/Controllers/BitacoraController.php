@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bitacora;
 use App\Exports\BitacoraExports;
+use App\Paciente;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -28,61 +29,40 @@ class BitacoraController extends Controller
     public function addRecords(Request $request) {
 
         try {
-            $this->validate($request, [
-                'hora_llamada'          =>   ['required'],
-                'hora_salida'           =>   ['required'],
-                'hora_llegada'          =>   ['required'],
-                'num_ambulancia'        =>   ['required'],
-                'tip_servicio'          =>   ['required'],
-                'nombre_operador'       =>   ['required'],
-                'nombre_paramedico'     =>   ['required'],
-                'dir_servicio'          =>   ['required'],
-                'km_salida_base'        =>   ['required'],
-                'km_llegada_base'       =>   ['required'],
-                'folio_frap'            =>   ['required'],
-                'folio_c4'              =>   ['required'],
-                'tel_reporte'           =>   ['required'],
-                'situacion_traslado'    =>   ['required'],
-                'delegacion'    =>   ['required']
-            ]);
+            $paciente = Paciente::where('pac_id', $request->pac_fk_id)->first();
+            $paciente->hos_fk_id = $request->hos_fk_id;
+            $paciente->update();
+
+            if (is_null($paciente))
+                return response()->json(['status' => false, 'message' => 'No se pudo actualizar el paciente']);
+
 
             $bitacora = new Bitacora();
-            $bitacora->hora_llamada         =  $request->hora_llamada;
-            $bitacora->hora_salida          =  $request->hora_salida;
-            $bitacora->hora_llegada         =  $request->hora_llegada;
-            $bitacora->num_ambulancia       =  $request->num_ambulancia;
-            $bitacora->tip_servicio         =  $request->tip_servicio;
-            $bitacora->fallecido            =  $request->fallecido;
-            $bitacora->nombre_paciente      =  $request->nombre_paciente;
-            $bitacora->apellidos_paciente   =  $request->apellidos_paciente;
-            $bitacora->edad_paciente        =  $request->edad_paciente;
-            $bitacora->sexo_paciente        =  $request->sexo_paciente;
-            $bitacora->hora_traslado        =  $request->hora_traslado;
-            $bitacora->hospital_traslado    =  $request->hospital_traslado;
-            $bitacora->llegada_hospital     =  $request->llegada_hospital;
-            $bitacora->llegada_base         =  $request->llegada_base;
-            $bitacora->nombre_operador      =  $request->nombre_operador;
-            $bitacora->nombre_paramedico    =  $request->nombre_paramedico;
-            $bitacora->dir_servicio         =  $request->dir_servicio;
-            $bitacora->km_salida_base       =  $request->km_salida_base;
-            $bitacora->km_llegada_base      =  $request->km_llegada_base;
-            $bitacora->folio_frap           =  $request->folio_frap;
-            $bitacora->folio_c4             =  $request->folio_c4;
-            $bitacora->tel_reporte          =  $request->tel_reporte;
-            $bitacora->situacion_traslado   =  $request->situacion_traslado;
-            $bitacora->veces_atendido       =  1;
-            $bitacora->delegacion           =  $request->delegacion;
+            $bitacora->bit_hora_llamada = $request->bit_hora_llamada;
+            $bitacora->bit_hora_salida = $request->bit_hora_salida;
+            $bitacora->bit_hora_llegada = $request->bit_hora_llegada;
+            $bitacora->bit_num_ambulancia = $request->bit_num_ambulancia;
+            $bitacora->bit_hora_traslado = $request->bit_hora_traslado;
+            $bitacora->bit_llegada_hospital = $request->bit_llegada_hospital;
+            $bitacora->bit_llegada_base = $request->bit_llegada_base;
+
+            $bitacora->bit_nombre_operador = $request->bit_nombre_operador;
+            $bitacora->bit_nombre_paramedico = $request->bit_nombre_paramedico;
+            $bitacora->bit_dir_servicio = $request->bit_dir_servicio;
+            $bitacora->bit_km_salida_base = $request->bit_km_salida_base;
+            $bitacora->bit_km_llegada_base = $request->bit_km_llegada_base;
+            $bitacora->bit_folio_frap = $request->bit_folio_frap;
+            $bitacora->bit_folio_c4 = $request->bit_folio_c4;
+            $bitacora->bit_tel_reporte = $request->bit_tel_reporte;
+            $bitacora->bit_situacion_traslado = $request->bit_situacion_traslado;
+            $bitacora->tip_servicio_fk_id = $request->tip_servicio_fk_id;
+            $bitacora->delegacion_fk_id = $request->delegacion_fk_id;
+            $bitacora->pac_fk_id = $request->pac_fk_id;
             $bitacora->save();
 
-            if (is_null($bitacora)) {
-                return redirect()->route('records')->with(
-                    ['messajeError' => 'Ocurrio un errora al registrar al paciente']
-                );
+            if (!is_null($bitacora)) {
+                return response()->json(['status' => true, 'message' => 'Bitacora guardado']);
             }
-
-            return redirect()->route('records')->with(
-                ['message' => 'Paciente agregado a la bitacora']
-            );
 
         }catch (\Exception $e) {
             logger('Exception: ' . $e->getMessage());
